@@ -1,0 +1,24 @@
+{
+  "name": "g4n-react/ms-catalog",
+  "description": "Something, something, something darkside...",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": ["solr"],
+  "authors": [
+    {
+      "name": "G4N React Crew",
+      "email": "biuro@global4net.com"
+    }
+  ],
+  "require": {
+    "phpunit/phpunit": "^6.5.9"
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "G4NReact\\MsCatalog\\": "src/"
+    }
+  }
+}
