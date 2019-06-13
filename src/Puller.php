@@ -2,6 +2,8 @@
 
 namespace G4NReact\MsCatalog;
 
+use G4NReact\MsCatalogSolr\Puller as SolrPuller;
+use G4NReact\MsCatalogSolr\QueryBuilder;
 use G4NReact\MsCatalogSolr\Response; // @ToDo move Response to ms-catalog
 use G4NReact\MsCatalogIndexer\Config; // @ToDo: move Config to ms-catalog
 use G4NReact\MsCatalogSolr\Config as SolrConfig;
@@ -18,6 +20,9 @@ class Puller
      */
     protected $query;
 
+    /**
+     * @var QueryBuilderInterface
+     */
     protected $queryBuilder;
     
     /**
@@ -26,7 +31,7 @@ class Puller
     protected $config;
 
     /**
-     * @var void // puller interface
+     * @var SolrPuller|mixed
      */
     protected $puller;
 
@@ -51,8 +56,8 @@ class Puller
             switch($engine) {
                 case self::ENGINE_SOLR:
                     $config = $this->createSolrConfig();
-                    $this->puller = new \G4NReact\MsCatalogSolr\Puller($config);
-                    $this->queryBuilder = new \G4NReact\MsCatalogSolr\QueryBuilder();
+                    $this->puller = new SolrPuller($config);
+                    $this->queryBuilder = new QueryBuilder();
             }
         }
     }
@@ -65,13 +70,14 @@ class Puller
         $host = $this->config->getHost();
         $port = $this->config->getPort();
         $path = $this->config->getPath();
+        $collection = $this->config->getCollection();
         $core = $this->config->getCore();
 
-        return new SolrConfig($host, $port, $path, $core);
+        return new SolrConfig($host, $port, $path, $collection, $core);
     }
 
     /**
-     * @return \G4NReact\MsCatalog\QueryBuilderInterface
+     * @return QueryBuilderInterface
      */
     public function getQueryBuilder()
     {

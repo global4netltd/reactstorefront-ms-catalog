@@ -15,9 +15,9 @@ interface ConfigInterface
 
     /**
      * @param int $engine
-     * @return Config
+     * @return ConfigInterface
      */
-    public function setEngine(int $engine);
+    public function setEngine(int $engine): ConfigInterface;
 
     /**
      * @return string
@@ -26,66 +26,78 @@ interface ConfigInterface
 
     /**
      * @param string $host
-     * @return Config
+     * @return ConfigInterface
      */
-    public function setHost(string $host);
+    public function setHost(string $host): ConfigInterface;
 
     /**
      * @return int
      */
-    public function getPort();
+    public function getPort(): int;
+
     /**
      * @param int $port
-     * @return Config
+     * @return ConfigInterface
      */
-    public function setPort(int $port);
+    public function setPort(int $port): ConfigInterface;
 
     /**
      * @return string
      */
-    public function getPath();
+    public function getPath(): string;
 
     /**
      * @param string $path
-     * @return Config
+     * @return ConfigInterface
      */
-    public function setPath(string $path);
+    public function setPath(string $path): ConfigInterface;
 
     /**
      * @return string
      */
-    public function getCore();
+    public function getCollection(): string;
+
+    /**
+     * @param string $collection
+     * @return ConfigInterface
+     */
+    public function setCollection(string $collection): ConfigInterface;
+
+    /**
+     * @return string
+     */
+    public function getCore(): string;
 
     /**
      * @param string $core
-     * @return Config
+     * @return ConfigInterface
      */
-    public function setCore(string $core);
+    public function setCore(string $core): ConfigInterface;
 
     /**
      * @return int
      */
-    public function getPageSize();
+    public function getPageSize(): int;
 
     /**
      * @param int $pageSize
-     * @return Config
+     * @return ConfigInterface
      */
-    public function setPageSize(int $pageSize);
+    public function setPageSize(int $pageSize): ConfigInterface;
 
     /**
      * @return bool
      */
-    public function isClearIndexBeforeReindex();
+    public function isClearIndexBeforeReindex(): bool;
 
     /**
      * @param bool $clearIndexBeforeReindex
-     * @return Config
+     * @return ConfigInterface
      */
-    public function setClearIndexBeforeReindex(bool $clearIndexBeforeReindex);
+    public function setClearIndexBeforeReindex(bool $clearIndexBeforeReindex): ConfigInterface;
 
     /**
      * @return array
      */
-    public function getConnectionConfigArray();
+    public function getConnectionConfigArray(): array;
 }
