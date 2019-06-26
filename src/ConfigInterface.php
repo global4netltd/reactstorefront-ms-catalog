@@ -9,95 +9,69 @@ namespace G4NReact\MsCatalog;
 interface ConfigInterface
 {
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEngine();
+    public function getPullerNamespace(): ?string;
 
     /**
-     * @param int $engine
-     * @return ConfigInterface
+     * @return string|null
      */
-    public function setEngine(int $engine): ConfigInterface;
+    public function getPusherNamespace(): ?string;
 
     /**
-     * @return string
+     * @return int|null
      */
-    public function getHost();
+    public function getPullerEngine(): ?int;
 
     /**
-     * @param string $host
-     * @return ConfigInterface
+     * @return int|null
      */
-    public function setHost(string $host): ConfigInterface;
-
-    /**
-     * @return int
-     */
-    public function getPort(): int;
-
-    /**
-     * @param int $port
-     * @return ConfigInterface
-     */
-    public function setPort(int $port): ConfigInterface;
-
-    /**
-     * @return string
-     */
-    public function getPath(): string;
-
-    /**
-     * @param string $path
-     * @return ConfigInterface
-     */
-    public function setPath(string $path): ConfigInterface;
-
-    /**
-     * @return string
-     */
-    public function getCollection(): string;
-
-    /**
-     * @param string $collection
-     * @return ConfigInterface
-     */
-    public function setCollection(string $collection): ConfigInterface;
-
-    /**
-     * @return string
-     */
-    public function getCore(): string;
-
-    /**
-     * @param string $core
-     * @return ConfigInterface
-     */
-    public function setCore(string $core): ConfigInterface;
-
-    /**
-     * @return int
-     */
-    public function getPageSize(): int;
-
-    /**
-     * @param int $pageSize
-     * @return ConfigInterface
-     */
-    public function setPageSize(int $pageSize): ConfigInterface;
-
-    /**
-     * @return bool
-     */
-    public function isClearIndexBeforeReindex(): bool;
-
-    /**
-     * @param bool $clearIndexBeforeReindex
-     * @return ConfigInterface
-     */
-    public function setClearIndexBeforeReindex(bool $clearIndexBeforeReindex): ConfigInterface;
+    public function getPusherEngine(): ?int;
 
     /**
      * @return array
      */
-    public function getConnectionConfigArray(): array;
+    public function getPullerEngineParams(): array;
+
+    /**
+     * @param array $params
+     * @return ConfigInterface
+     */
+    public function setPullerEngineParams(array $params): ConfigInterface;
+
+    /**
+     * @return array
+     */
+    public function getPusherEngineParams(): array;
+
+    /**
+     * @param array $params
+     * @return ConfigInterface
+     */
+    public function setPusherEngineParams(array $params): ConfigInterface;
+
+    /**
+     * @return int|null
+     */
+    public function getPullerPageSize(): ?int;
+
+    /**
+     * @return int|null
+     */
+    public function getPusherPageSize(): ?int;
+
+    /**
+     * @return bool|null
+     */
+    public function getPusherDeleteIndex(): ?bool;
+
+    /**
+     * @return array
+     */
+    public function getPullerEngineConnectionArray(): array;
+
+    /**
+     * @return array
+     */
+    public function getPusherEngineConnectionArray(): array;
 }
