@@ -31,11 +31,17 @@ class Field extends AbstractObject
     protected $indexable;
 
     /**
+     * @var bool
+     */
+    protected $multiValued;
+
+    /**
      * Field constructor
      * @param string $name
      * @param mixed $value
      * @param string $type
      * @param bool $indexable
+     * @param bool $multiValued
      * @param array $args
      */
     public function __construct(
@@ -43,12 +49,14 @@ class Field extends AbstractObject
         $value = null, 
         string $type = '',
         bool $indexable = false,
+        bool $multiValued = false,
         array $args = []
     ) {
         $this->name = $name;
         $this->value = $value;
         $this->type = $type;
         $this->indexable = $indexable;
+        $this->multiValued = $multiValued;
 
         if (is_array($args)) {
             foreach ($args as $key => $value) {
@@ -129,6 +137,25 @@ class Field extends AbstractObject
     public function setIndexable(bool $indexable): Field
     {
         $this->indexable = $indexable;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getMultiValued(): bool
+    {
+        return $this->multiValued;
+    }
+
+    /**
+     * @param bool $multiValued
+     * @return Field
+     */
+    public function setMultiValued(bool $multiValued): Field
+    {
+        $this->multiValued = $multiValued;
 
         return $this;
     }
