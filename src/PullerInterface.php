@@ -2,8 +2,6 @@
 
 namespace G4NReact\MsCatalog;
 
-use Iterator;
-
 /**
  * Interface PullerInterface
  * @package G4NReact\MsCatalog
@@ -11,7 +9,8 @@ use Iterator;
 interface PullerInterface
 {
     /**
-     * @return Iterator
+     * @param QueryInterface|null $query
+     * @return ResponseInterface
      */
-    public function pull(): Iterator;
+    public function pull(QueryInterface $query = null): ResponseInterface;
 }
