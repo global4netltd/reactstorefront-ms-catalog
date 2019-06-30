@@ -120,10 +120,11 @@ class Document extends AbstractObject
      * @param mixed|null $value
      * @param string $type
      * @param bool $indexable
+     * @param bool $multiValued
      * @param array $args
      * @return $this
      */
-    public function setField($name, $value = null, $type = '', $indexable = false, $args = []): Document
+    public function setField($name, $value = null, $type = '', $indexable = false, $multiValued = false, $args = []): Document
     {
         if (!is_string($type)) {
             $type = '';
@@ -135,7 +136,12 @@ class Document extends AbstractObject
             $field->setValue($value);
             $field->setType($type);
             $field->setIndexable($indexable);
-            $field->setData($args);
+            $field->setMultiValued($multiValued);
+            if (is_array($args)) {
+                foreach ($args as $key => $value) {
+                    $field->setData($key, $value);
+                }
+            }
         } else {
             $field = new Field($name, $value, $type, $indexable, $args);
             $this->_data[$name] = $field;
