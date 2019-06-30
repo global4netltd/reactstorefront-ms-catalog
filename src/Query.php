@@ -63,12 +63,10 @@ class Query
     {
         $this->options = $options;
         $this->type = $type;
-
-        if ($this->type == 'solr') {
-            $this->config = new \G4NReact\MsCatalogSolr\Config($config['host'], $config['port'], $config['path'], $config['core']);
-            $this->puller = new \G4NReact\MsCatalogSolr\Puller($this->config);
-            $this->query = new \G4NReact\MsCatalogSolr\Query\ProductQuery();
-        }
+        $this->config = $config;
+        // @ToDo: Temporarily solution - change this ASAP
+        $this->puller = \G4NReact\MsCatalog\PullerFactory::create($config);
+        $this->query = $this->puller->getQuery();
     }
 
     /**
