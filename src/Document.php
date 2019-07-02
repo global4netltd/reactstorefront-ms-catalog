@@ -143,7 +143,7 @@ class Document extends AbstractObject
                 }
             }
         } else {
-            $field = new Field($name, $value, $type, $indexable, $args);
+            $field = new Field($name, $value, $type, $indexable, $multiValued, $args);
             $this->_data[$name] = $field;
         }
 
