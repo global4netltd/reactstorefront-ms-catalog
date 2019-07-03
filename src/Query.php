@@ -104,7 +104,7 @@ class Query
 
         if (isset($this->options['facet'])) {
             $this->query->setFacet(true);
-            $this->query->setFacetFilds($this->options['facet']);
+            $this->query->setFacetFields($this->options['facet']);
         }
 
         if (isset($this->options['stat'])) {
