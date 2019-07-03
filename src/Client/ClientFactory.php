@@ -1,12 +1,12 @@
 <?php
 
-namespace G4NReact\MsCatalog\ClientFactory;
+namespace G4NReact\MsCatalog\Client;
 
 use G4NReact\MsCatalog\Config;
 
 /**
  * Class ClientFactory
- * @package G4NReact\MsCatalog\ClientFactory
+ * @package G4NReact\MsCatalog\Client
  */
 class ClientFactory
 {
@@ -15,9 +15,9 @@ class ClientFactory
      *
      * @return null
      */
-    public static function create(Config $config)
+    public function create(Config $config)
     {
-        $namespace = $config->getPullerNamespace() ?: null;
+        $namespace = $config->getPusherNamespace() ?: null;
 
         if (!$namespace) {
             return null;
