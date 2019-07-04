@@ -9,11 +9,18 @@ namespace G4NReact\MsCatalog\Client;
 interface ClientInterface
 {
     /**
-     * @param int $id
+     * @param string|int $id
      *
      * @return mixed
      */
-    public function delete(int $id);
+    public function deleteById($id);
+
+    /**
+     * @param array $ids
+     *
+     * @return mixed
+     */
+    public function deleteByIds(array $ids);
 
     /**
      * @param array $fields
