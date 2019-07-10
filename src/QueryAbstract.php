@@ -1,5 +1,11 @@
 <?php
 
+namespace G4NReact;
+
+/**
+ * Class QueryAbstract
+ * @package G4NReact
+ */
 class QueryAbstract implements \G4NReact\MsCatalog\QueryInterface
 {
     /**
