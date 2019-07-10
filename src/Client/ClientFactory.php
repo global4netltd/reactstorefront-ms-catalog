@@ -13,14 +13,14 @@ class ClientFactory
     /**
      * @param \G4NReact\MsCatalog\Config $config
      *
-     * @return null
+     * @return ClientInterface
      */
-    public function create(Config $config)
+    static function create(Config $config)
     {
         $namespace = $config->getPusherNamespace() ?: null;
 
         if (!$namespace) {
-            return null;
+            throw \Exception('Namespace is not defined in config.');
         }
 
         $className = "\\G4NReact\\{$namespace}\\Client\\Client";
@@ -29,6 +29,7 @@ class ClientFactory
             return new $className($config);
         }
 
-        return null;
+        /** @todo create our client class not found exception */
+        throw \Exception(sprintf('Class %s not found.', $className));
     }
 }

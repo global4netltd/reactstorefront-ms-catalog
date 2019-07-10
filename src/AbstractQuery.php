@@ -2,6 +2,8 @@
 
 namespace G4NReact\MsCatalog;
 
+use G4NReact\MsCatalog\Client\ClientFactory;
+
 /**
  * Class QueryAbstract
  * @package G4NReact
@@ -45,6 +47,14 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
     public function __construct(ConfigInterface $config)
     {
         $this->config = $config;
+    }
+
+    /**
+     * @return Client\ClientInterface
+     */
+    public function getClient()
+    {
+       return ClientFactory::create($this->config);
     }
 
     /**
