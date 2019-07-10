@@ -66,6 +66,15 @@ interface QueryInterface
      */
     public function addFieldsToSelect(array $fields);
 
+    /**
+     * @param string $field
+     * @return void
+     */
+    public function removeFieldFromSelect(string $field);
 
+    /**
+     * @return void
+     */
+    public function clearFieldsInSelect();
 
 }
