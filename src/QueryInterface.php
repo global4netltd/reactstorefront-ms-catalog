@@ -99,10 +99,37 @@ interface QueryInterface
     public function setAdditionalOptions(array $options);
 
     /**
+     * @return int
+     */
+    public function getPageSize(): int;
+
+    /**
+     * @param int $pageSize
+     */
+    public function setPageSize(int $pageSize): void;
+
+    /**
+     * @return int
+     */
+    public function getPageStart(): int;
+
+    /**
+     * @param int $pageStart
+     */
+    public function setPageStart(int $pageStart): void;
+
+    /**
      * Build query and return instance of data which is
      * matching to engine library
      * @return mixed
      */
     public function buildQuery();
+
+    /**
+     * Run query and get response (@return Response
+     * @see Response) from
+     * selected engine library
+     */
+    public function getResponse();
 
 }

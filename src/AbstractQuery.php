@@ -36,6 +36,16 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
     public $fields;
 
     /**
+     * @var int
+     */
+    public $pageSize;
+
+    /**
+     * @var int
+     */
+    public $pageStart;
+
+    /**
      * @var array
      */
     public $additionalOptions;
@@ -172,9 +182,50 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
         $this->additionalOptions = $options;
     }
 
+
+    /**
+     * @inheritDoc
+     */
+    public function getPageSize(): int
+    {
+        return $this->pageSize;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setPageSize(int $pageSize): void
+    {
+        $this->pageSize = $pageSize;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getPageStart(): int
+    {
+        return $this->pageStart;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setPageStart(int $pageStart): void
+    {
+        $this->pageStart = $pageStart;
+    }
+
     /**
      * @inheritDoc
      */
     abstract public function buildQuery();
+
+    /**
+     * @inheritDoc
+     */
+    abstract public function getResponse();
 
 }
