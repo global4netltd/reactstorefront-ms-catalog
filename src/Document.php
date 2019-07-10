@@ -35,6 +35,7 @@ class Document extends AbstractObject
 
     /**
      * @param string $uniqueId
+     *
      * @return Document
      */
     public function setUniqueId(string $uniqueId): Document
@@ -54,6 +55,7 @@ class Document extends AbstractObject
 
     /**
      * @param int $objectId
+     *
      * @return Document
      */
     public function setObjectId(int $objectId): Document
@@ -73,6 +75,7 @@ class Document extends AbstractObject
 
     /**
      * @param string $objectType
+     *
      * @return Document
      */
     public function setObjectType(string $objectType): Document
@@ -100,6 +103,8 @@ class Document extends AbstractObject
 
     /**
      * @param string $name
+     *
+     * @return mixed|null
      */
     public function getField(string $name)
     {
@@ -108,6 +113,7 @@ class Document extends AbstractObject
 
     /**
      * @param string $name
+     *
      * @return mixed|null
      */
     public function getFieldValue(string $name)
@@ -122,6 +128,7 @@ class Document extends AbstractObject
      * @param bool $indexable
      * @param bool $multiValued
      * @param array $args
+     *
      * @return $this
      */
     public function setField($name, $value = null, $type = '', $indexable = false, $multiValued = false, $args = []): Document
@@ -145,6 +152,21 @@ class Document extends AbstractObject
         } else {
             $field = new Field($name, $value, $type, $indexable, $multiValued, $args);
             $this->_data[$name] = $field;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $name
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setFieldValue($name, $value)
+    {
+        if ($this->getField($name)) {
+            $this->getData($name)->setValue($value);
         }
 
         return $this;
