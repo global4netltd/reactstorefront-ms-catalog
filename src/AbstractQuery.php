@@ -1,13 +1,18 @@
 <?php
 
-namespace G4NReact;
+namespace G4NReact\MsCatalog;
 
 /**
  * Class QueryAbstract
  * @package G4NReact
  */
-class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
+abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
 {
+    /**
+     * @var ConfigInterface
+     */
+    public $config;
+
     /**
      * @var string
      */
@@ -33,6 +38,14 @@ class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
      */
     public $additionalOptions;
 
+    /**
+     * QueryInterface constructor.
+     * @param ConfigInterface $config
+     */
+    public function __construct(ConfigInterface $config)
+    {
+        $this->config = $config;
+    }
 
     /**
      * @inheritDoc
@@ -56,7 +69,7 @@ class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
     public function addFilter($filter, $value, $negative = false)
     {
         $this->filters[$filter] = [
-            'value' => $value,
+            'value'    => $value,
             'negative' => false
         ];
     }
@@ -152,9 +165,6 @@ class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
     /**
      * @inheritDoc
      */
-    public function buildQuery()
-    {
-        // TODO: Implement buildQuery() method.
-    }
+    abstract public function buildQuery();
 
 }

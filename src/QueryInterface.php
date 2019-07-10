@@ -8,6 +8,12 @@ namespace G4NReact\MsCatalog;
 interface QueryInterface
 {
     /**
+     * QueryInterface constructor.
+     * @param ConfigInterface $config
+     */
+    public function __construct(ConfigInterface $config);
+
+    /**
      * @param mixed $queryText
      * @return void
      */
@@ -94,7 +100,7 @@ interface QueryInterface
 
     /**
      * Build query and return instance of data which is
-     * matching to engine connecting library
+     * matching to engine library
      * @return mixed
      */
     public function buildQuery();
