@@ -64,13 +64,6 @@ interface QueryInterface
     public function getSort();
 
     /**
-     * Remove sort by field from query
-     * @param string $field field name
-     * @return void
-     */
-    public function removeSort(string $field);
-
-    /**
      * Clear all current set sort in query
      * @return void
      */
@@ -87,12 +80,6 @@ interface QueryInterface
      * @return void
      */
     public function addFieldsToSelect(array $fields);
-
-    /**
-     * @param string $field
-     * @return void
-     */
-    public function removeFieldFromSelect(string $field);
 
     /**
      * @return void
