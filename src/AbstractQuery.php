@@ -6,7 +6,7 @@ namespace G4NReact;
  * Class QueryAbstract
  * @package G4NReact
  */
-class QueryAbstract implements \G4NReact\MsCatalog\QueryInterface
+class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
 {
     /**
      * @var string
