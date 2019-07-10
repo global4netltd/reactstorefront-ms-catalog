@@ -111,7 +111,7 @@ class Query
             $this->query->setFacet(true);
             $this->query->setStatFilds($this->options['stat']);
         }
-        
+
         if (isset($this->options['fields_to_fetch'])) {
             $this->query->setFieldsToFetch($this->options['fields_to_fetch']);
         }
@@ -235,7 +235,7 @@ class Query
      * @param array $fields
      * @return string
      */
-    public function getQueryStringByValue($value, $fields = array())
+    public function getQueryStringByValue($value, $fields = [])
     {
         $clearValue = (strpos($value, ' ') !== false) ? str_replace(' ', '', $value) : false;
 
@@ -271,9 +271,9 @@ class Query
      * @param $string
      * @return string
      */
-    static function convertPolishLetters($string)
+    public static function convertPolishLetters($string)
     {
-        $table = Array(
+        $table = [
             //WIN
             "\xb9"     => "a", "\xa5" => "A", "\xe6" => "c", "\xc6" => "C",
             "\xea"     => "e", "\xca" => "E", "\xb3" => "l", "\xa3" => "L",
@@ -291,7 +291,7 @@ class Query
             "\xea"     => "e", "\xca" => "E", "\xb3" => "l", "\xa3" => "L",
             "\xf3"     => "o", "\xd3" => "O", "\xb6" => "s", "\xa6" => "S",
             "\xbc"     => "z", "\xac" => "Z", "\xbf" => "z", "\xaf" => "Z",
-            "\xf1"     => "n", "\xd1" => "N");
+            "\xf1"     => "n", "\xd1" => "N"];
 
         return strtr($string, $table);
     }
