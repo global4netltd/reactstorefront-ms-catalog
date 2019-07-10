@@ -8,26 +8,22 @@ namespace G4NReact\MsCatalog;
  */
 class Config implements ConfigInterface
 {
-    /**
-     * @var array
-     */
-    protected $pullerEngineParams;
+    const PULLER_PARAM = 'puller';
+    const PUSHER_PARAM = 'pusher';
 
     /**
      * @var array
      */
-    protected $pusherEngineParams;
+    protected $engineParams;
 
     /**
      * Config constructor
      *
-     * @param array $pullerEngineParams
-     * @param array $pusherEngineParams
+     * @param array $engineParams
      */
-    public function __construct(array $pullerEngineParams, array $pusherEngineParams)
+    public function __construct(array $engineParams)
     {
-        $this->pullerEngineParams = $pullerEngineParams;
-        $this->pusherEngineParams = $pusherEngineParams;
+        $this->engineParams = $engineParams;
     }
 
     /**
@@ -35,7 +31,7 @@ class Config implements ConfigInterface
      */
     public function getPullerNamespace(): ?string
     {
-        return $this->pullerEngineParams['namespace'] ?? null;
+        return $this->engineParams[self::PULLER_PARAM]['namespace'] ?? null;
     }
 
     /**
@@ -43,7 +39,7 @@ class Config implements ConfigInterface
      */
     public function getPusherNamespace(): ?string
     {
-        return $this->pusherEngineParams['namespace'] ?? null;
+        return $this->engineParams[self::PUSHER_PARAM]['namespace'] ?? null;
     }
 
     /**
@@ -51,7 +47,7 @@ class Config implements ConfigInterface
      */
     public function getPullerEngine(): ?int
     {
-        return $this->pullerEngineParams['engine'] ?? null;
+        return $this->engineParams[self::PULLER_PARAM]['engine'] ?? null;
     }
 
     /**
@@ -59,7 +55,7 @@ class Config implements ConfigInterface
      */
     public function getPusherEngine(): ?int
     {
-        return $this->pusherEngineParams['engine'] ?? null;
+        return $this->engineParams[self::PUSHER_PARAM]['engine'] ?? null;
     }
 
     /**
@@ -67,7 +63,7 @@ class Config implements ConfigInterface
      */
     public function getPullerEngineParams(): array
     {
-        return $this->pullerEngineParams;
+        return $this->engineParams[self::PULLER_PARAM];
     }
 
     /**
@@ -76,7 +72,7 @@ class Config implements ConfigInterface
      */
     public function setPullerEngineParams(array $params): ConfigInterface
     {
-        $this->pullerEngineParams = $params;
+        $this->engineParams[self::PULLER_PARAM] = $params;
 
         return $this;
     }
@@ -86,7 +82,7 @@ class Config implements ConfigInterface
      */
     public function getPusherEngineParams(): array
     {
-        return $this->pusherEngineParams;
+        return $this->engineParams[self::PUSHER_PARAM];
     }
 
     /**
@@ -95,7 +91,7 @@ class Config implements ConfigInterface
      */
     public function setPusherEngineParams(array $params): ConfigInterface
     {
-        $this->pusherEngineParams = $params;
+        $this->engineParams[self::PUSHER_PARAM] = $params;
 
         return $this;
     }
@@ -105,7 +101,7 @@ class Config implements ConfigInterface
      */
     public function getPullerPageSize(): ?int
     {
-        return $this->pullerEngineParams['puller_page_size'] ?? null;
+        return $this->engineParams[self::PULLER_PARAM]['puller_page_size'] ?? null;
     }
 
     /**
@@ -113,7 +109,7 @@ class Config implements ConfigInterface
      */
     public function getPusherPageSize(): ?int
     {
-        return $this->pusherEngineParams['pusher_page_size'] ?? null;
+        return $this->engineParams[self::PUSHER_PARAM]['pusher_page_size'] ?? null;
     }
 
     /**
@@ -121,7 +117,7 @@ class Config implements ConfigInterface
      */
     public function getPusherDeleteIndex(): ?bool
     {
-        return $this->pusherEngineParams['pusher_delete_index'] ?? null;
+        return $this->engineParams[self::PUSHER_PARAM]['pusher_delete_index'] ?? null;
     }
 
     /**
@@ -129,7 +125,7 @@ class Config implements ConfigInterface
      */
     public function getPullerEngineConnectionArray(): array
     {
-        return $this->pullerEngineParams['connection'] ?? [];
+        return $this->engineParams[self::PULLER_PARAM]['connection'] ?? [];
     }
 
     /**
@@ -137,6 +133,6 @@ class Config implements ConfigInterface
      */
     public function getPusherEngineConnectionArray(): array
     {
-        return $this->pusherEngineParams['connection'] ?? [];
+        return $this->engineParams[self::PUSHER_PARAM]['connection'] ?? [];
     }
 }
