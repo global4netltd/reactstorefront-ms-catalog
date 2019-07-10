@@ -7,24 +7,41 @@ namespace G4NReact\MsCatalog;
  */
 interface QueryInterface
 {
-
     /**
-     * @param $queryText
+     * @param mixed $queryText
      * @return void
      */
     public function setQueryText($queryText);
+
+    /**
+     * @return mixed
+     */
+    public function getQueryText();
+
+    /**
+     * @param string $filter
+     * @param mixed $value set value for filter which could be also range (X-Y)
+     * @param bool $negative defines if value must not appear in data
+     * @return void
+     */
+    public function addFilter($filter, $value, $negative = false);
 
     /**
      * @param $filter
      * @param $value
      * @return void
      */
-    public function addFilterQuery($filter, $value, $negative = false);
+    public function addFilters($filters);
 
     /**
      * @return void
      */
-    public function clearFilterQuery();
+    public function clearFilters();
+
+    /**
+     * @return mixed
+     */
+    public function getFilters();
 
     /**
      * @param $field
@@ -40,6 +57,11 @@ interface QueryInterface
      * @return void
      */
     public function setSort(array $fields);
+
+    /**
+     * @return mixed
+     */
+    public function getSort();
 
     /**
      * Remove sort by field from query
@@ -76,5 +98,18 @@ interface QueryInterface
      * @return void
      */
     public function clearFieldsInSelect();
+
+    /**
+     * @param array $options
+     * @return mixed
+     */
+    public function setAdditionalOptions(array $options);
+
+    /**
+     * Build query and return instance of data which is
+     * matching to engine connecting library
+     * @return mixed
+     */
+    public function buildQuery();
 
 }
