@@ -78,10 +78,10 @@ abstract class AbstractQuery implements QueryInterface
      * @param ConfigInterface $config
      * @param ClientInterface $client
      */
-    public function __construct(ConfigInterface $config, ClientInterface $client)
+    public function __construct(ConfigInterface $config)
     {
         $this->config = $config;
-        $this->client = $client;
+        $this->client = ClientFactory::getInstance($config);
     }
 
     /**
