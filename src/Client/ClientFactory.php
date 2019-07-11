@@ -2,7 +2,8 @@
 
 namespace G4NReact\MsCatalog\Client;
 
-use G4NReact\MsCatalog\Config;
+use Exception;
+use G4NReact\MsCatalog\Config as MsCatalogConfig;
 
 /**
  * Class ClientFactory
@@ -11,16 +12,17 @@ use G4NReact\MsCatalog\Config;
 class ClientFactory
 {
     /**
-     * @param Config $config
+     * @param MsCatalogConfig $config
      *
      * @return ClientInterface
+     * @throws Exception
      */
-    static function create(Config $config)
+    public static function create(MsCatalogConfig $config)
     {
         $namespace = $config->getPusherNamespace() ?: null;
 
         if (!$namespace) {
-            throw \Exception('Namespace is not defined in config.');
+            throw new Exception('Namespace is not defined in config.');
         }
 
         $className = "\\G4NReact\\{$namespace}\\Client\\Client";
@@ -30,29 +32,6 @@ class ClientFactory
         }
 
         /** @todo create our client class not found exception */
-        throw \Exception(sprintf('Class %s not found.', $className));
-    }
-
-    /**
-     * @param Config $config
-     *
-     * @return mixed
-     */
-    public function getQuery(Config $config)
-    {
-        $namespace = $config->getPusherNamespace() ?: null;
-
-        if (!$namespace) {
-            throw \Exception('Namespace is not defined in config.');
-        }
-
-        $className = "\\G4NReact\\{$namespace}\\Query";
-
-        if (class_exists($className)) {
-            return new $className($config);
-        }
-
-        /** @todo create our client class not found exception */
-        throw \Exception(sprintf('Class %s not found.', $className));
+        throw new Exception(sprintf('Class %s not found.', $className));
     }
 }

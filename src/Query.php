@@ -2,6 +2,9 @@
 
 namespace G4NReact\MsCatalog;
 
+use Exception;
+use G4NReact\MsCatalog\Client\ClientFactory;
+
 /**
  * Class Query
  * @package G4NReact\MsCatalog
@@ -58,6 +61,7 @@ class Query
      * @param $type
      * @param $config
      * @param $options
+     * @throws Exception
      */
     public function __construct($type, $config, $options)
     {
@@ -65,7 +69,7 @@ class Query
         $this->type = $type;
         $this->config = $config;
         // @ToDo: Temporarily solution - change this ASAP
-        $this->puller = \G4NReact\MsCatalog\PullerFactory::create($config);
+        $this->puller = ClientFactory::create($config)->getPuller();
         $this->query = $this->puller->getQuery();
     }
 
