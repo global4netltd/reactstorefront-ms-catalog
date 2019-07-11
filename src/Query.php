@@ -32,7 +32,7 @@ class Query
     public $puller;
 
     /**
-     * @var \G4NReact\MsCatalogSolr\Query\ProductQuery
+     * @var \G4NReact\MsCatalogSolr\Query
      */
     public $query;
 

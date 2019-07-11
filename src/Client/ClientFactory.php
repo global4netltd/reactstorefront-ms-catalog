@@ -3,7 +3,7 @@
 namespace G4NReact\MsCatalog\Client;
 
 use Exception;
-use G4NReact\MsCatalog\Config as MsCatalogConfig;
+use G4NReact\MsCatalog\ConfigInterface;
 
 /**
  * Class ClientFactory
@@ -12,14 +12,13 @@ use G4NReact\MsCatalog\Config as MsCatalogConfig;
 class ClientFactory
 {
     /**
-     * @param MsCatalogConfig $config
-     *
+     * @param ConfigInterface $config
      * @return ClientInterface
      * @throws Exception
      */
-    public static function create(MsCatalogConfig $config)
+    public static function create(ConfigInterface $config)
     {
-        $namespace = $config->getPusherNamespace() ?: null;
+        $namespace = $config->getEngineNamespace() ?: null;
 
         if (!$namespace) {
             throw new Exception('Namespace is not defined in config.');

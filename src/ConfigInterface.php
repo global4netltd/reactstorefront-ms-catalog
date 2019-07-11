@@ -11,44 +11,23 @@ interface ConfigInterface
     /**
      * @return string|null
      */
-    public function getPullerNamespace(): ?string;
-
-    /**
-     * @return string|null
-     */
-    public function getPusherNamespace(): ?string;
+    public function getEngineNamespace(): ?string;
 
     /**
      * @return int|null
      */
-    public function getPullerEngine(): ?int;
-
-    /**
-     * @return int|null
-     */
-    public function getPusherEngine(): ?int;
+    public function getEngine(): ?int;
 
     /**
      * @return array
      */
-    public function getPullerEngineParams(): array;
+    public function getEngineParams(): array;
 
     /**
      * @param array $params
      * @return ConfigInterface
      */
-    public function setPullerEngineParams(array $params): ConfigInterface;
-
-    /**
-     * @return array
-     */
-    public function getPusherEngineParams(): array;
-
-    /**
-     * @param array $params
-     * @return ConfigInterface
-     */
-    public function setPusherEngineParams(array $params): ConfigInterface;
+    public function setEngineParams(array $params): ConfigInterface;
 
     /**
      * @return int|null
@@ -68,10 +47,5 @@ interface ConfigInterface
     /**
      * @return array
      */
-    public function getPullerEngineConnectionArray(): array;
-
-    /**
-     * @return array
-     */
-    public function getPusherEngineConnectionArray(): array;
+    public function getEngineConnectionArray(): array;
 }

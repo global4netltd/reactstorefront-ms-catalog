@@ -2,6 +2,8 @@
 
 namespace G4NReact\MsCatalog;
 
+use G4NReact\MsCatalog\Client\ClientInterface;
+
 /**
  * Interface QueryInterface
  */
@@ -10,8 +12,9 @@ interface QueryInterface
     /**
      * QueryInterface constructor.
      * @param ConfigInterface $config
+     * @param ClientInterface $client
      */
-    public function __construct(ConfigInterface $config);
+    public function __construct(ConfigInterface $config, ClientInterface $client);
 
     /**
      * @param mixed $queryText
@@ -28,16 +31,15 @@ interface QueryInterface
      * @param string $filter
      * @param mixed $value set value for filter which could be also range (X-Y)
      * @param bool $negative defines if value must not appear in data
-     * @return void
+     * @return $this
      */
     public function addFilter($filter, $value, $negative = false);
 
     /**
-     * @param $filter
-     * @param $value
-     * @return void
+     * @param array $filters
+     * @return $this
      */
-    public function addFilters($filters);
+    public function addFilters(array $filters);
 
     /**
      * @return void
