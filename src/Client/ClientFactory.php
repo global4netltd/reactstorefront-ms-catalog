@@ -11,6 +11,9 @@ use G4NReact\MsCatalog\ConfigInterface;
  */
 class ClientFactory
 {
+
+    protected static $instance = null;
+
     /**
      * @param ConfigInterface $config
      * @return ClientInterface
@@ -32,5 +35,17 @@ class ClientFactory
 
         /** @todo create our client class not found exception */
         throw new Exception(sprintf('Class %s not found.', $className));
+    }
+
+    /**
+     * @return ClientFactory|null
+     */
+    public static function getInstance()
+    {
+        if(self::$instance == null){
+            self::$instance = new ClientFactory();
+        }
+
+        return self::$instance;
     }
 }
