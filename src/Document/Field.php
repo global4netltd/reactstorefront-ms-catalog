@@ -10,6 +10,17 @@ use G4NReact\MsCatalog\AbstractObject;
  */
 class Field extends AbstractObject
 {
+    const FIELD_TYPE_STATIC = 'static';
+    const FIELD_TYPE_STRING = 'string';
+    const FIELD_TYPE_INT = 'int';
+    const FIELD_TYPE_TEXT = 'text';
+    const FIELD_TYPE_VARCHAR = 'varchar';
+    const FIELD_TYPE_DATETIME = 'datetime';
+    const FIELD_TYPE_DECIMAL = 'decimal';
+    const FIELD_TYPE_FLOAT = 'float';
+    const FIELD_TYPE_DOUBLE = 'double';
+    const FIELD_TYPE_BOOL = 'bool';
+
     /**
      * @var string 
      */
@@ -52,11 +63,11 @@ class Field extends AbstractObject
         bool $multiValued = false,
         array $args = []
     ) {
-        $this->name = $name;
-        $this->value = $value;
-        $this->type = $type;
-        $this->indexable = $indexable;
-        $this->multiValued = $multiValued;
+        $this->setName($name);
+        $this->setValue($value);
+        $this->setType($type);
+        $this->setIndexable($indexable);
+        $this->setMultiValued($multiValued);
 
         if (is_array($args)) {
             foreach ($args as $key => $value) {
@@ -167,4 +178,5 @@ class Field extends AbstractObject
     {
         return (string)$this->getValue();
     }
+
 }
