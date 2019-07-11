@@ -3,6 +3,7 @@
 namespace G4NReact\MsCatalog;
 
 use G4NReact\MsCatalog\Client\ClientFactory;
+use G4NReact\MsCatalog\Document\Field;
 
 /**
  * Class QueryAbstract
@@ -10,6 +11,12 @@ use G4NReact\MsCatalog\Client\ClientFactory;
  */
 abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
 {
+    /** @var string field */
+    const FIELD = 'field';
+    
+    /** @var string negative */
+    const NEGATIVE = 'negative';
+    
     /**
      * @var ConfigInterface
      */
@@ -95,13 +102,16 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
     }
 
     /**
-     * @inheritDoc
+     * @param \G4NReact\MsCatalog\Document\Field $field
+     * @param bool $negative
+     *
+     * @return mixed|void
      */
-    public function addFilter($filter, $value, $negative = false)
+    public function addFilter(Field $field, $negative = false)
     {
-        $this->filters[$filter] = [
-            'value' => $value,
-            'negative' => false
+        $this->filters[$field->getName()] = [
+            self::FIELD => $field,
+            self::NEGATIVE => $negative
         ];
     }
 
@@ -164,7 +174,7 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
     /**
      * @inheritDoc
      */
-    public function addFieldToSelect(string $field)
+    public function addFieldToSelect(Field $field)
     {
         $this->fields[] = $field;
     }

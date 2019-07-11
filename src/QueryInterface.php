@@ -2,6 +2,8 @@
 
 namespace G4NReact\MsCatalog;
 
+use G4NReact\MsCatalog\Document\Field;
+
 /**
  * Interface QueryInterface
  */
@@ -25,12 +27,12 @@ interface QueryInterface
     public function getQueryText();
 
     /**
-     * @param string $filter
-     * @param mixed $value set value for filter which could be also range (X-Y)
+     * @param Field $field
      * @param bool $negative defines if value must not appear in data
-     * @return void
+     *
+     * @return mixed
      */
-    public function addFilter($filter, $value, $negative = false);
+    public function addFilter(Field $field, $negative = false);
 
     /**
      * @param $filter
@@ -79,7 +81,7 @@ interface QueryInterface
      * @param string $field
      * @return void
      */
-    public function addFieldToSelect(string $field);
+    public function addFieldToSelect(Field $field);
 
     /**
      * @param array $fields
