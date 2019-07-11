@@ -62,4 +62,16 @@ interface ClientInterface
      * @return QueryInterface
      */
     public function getQuery(): QueryInterface;
+
+    /**
+     * @param string $name
+     * @param null $value
+     * @param string $type
+     * @param bool $indexable
+     * @param bool $multiValued
+     * @param array $args
+     *
+     * @return mixed
+     */
+    public function getField(string $name, $value = null, string $type = '', bool $indexable = false, bool $multiValued = false, array $args = []);
 }

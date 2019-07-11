@@ -5,7 +5,7 @@ namespace G4NReact\MsCatalog\Document;
 use G4NReact\MsCatalog\AbstractObject;
 
 /**
- * Class Field
+ * Class AbstractField
  * @package G4NReact\MsCatalog\Document
  */
 class AbstractField extends AbstractObject
@@ -47,7 +47,8 @@ class AbstractField extends AbstractObject
     protected $multiValued;
 
     /**
-     * Field constructor
+     * AbstractField constructor
+     *
      * @param string $name
      * @param mixed $value
      * @param string $type
@@ -87,9 +88,10 @@ class AbstractField extends AbstractObject
 
     /**
      * @param mixed $name
-     * @return Field
+     *
+     * @return AbstractField
      */
-    public function setName(string $name): Field
+    public function setName(string $name): AbstractField
     {
         $this->name = $name;
 
@@ -106,9 +108,10 @@ class AbstractField extends AbstractObject
 
     /**
      * @param mixed $value
-     * @return Field
+     *
+     * @return AbstractField
      */
-    public function setValue($value): Field
+    public function setValue($value): AbstractField
     {
         $this->value = $value;
 
@@ -125,7 +128,8 @@ class AbstractField extends AbstractObject
 
     /**
      * @param string $type
-     * @return Field
+     *
+     * @return AbstractField
      */
     public function setType(string $type)
     {
@@ -144,9 +148,10 @@ class AbstractField extends AbstractObject
 
     /**
      * @param bool $indexable
-     * @return Field
+     *
+     * @return AbstractField
      */
-    public function setIndexable(bool $indexable): Field
+    public function setIndexable(bool $indexable): AbstractField
     {
         $this->indexable = $indexable;
 
@@ -163,9 +168,10 @@ class AbstractField extends AbstractObject
 
     /**
      * @param bool $multiValued
-     * @return Field
+     *
+     * @return AbstractField
      */
-    public function setMultiValued(bool $multiValued): Field
+    public function setMultiValued(bool $multiValued): AbstractField
     {
         $this->multiValued = $multiValued;
 
@@ -185,6 +191,6 @@ class AbstractField extends AbstractObject
      * which is used for this field in selected engine
      * @return string
      */
-    abstract function getFieldName();
+//    abstract public function getFieldName();
 
 }

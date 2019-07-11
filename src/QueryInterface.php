@@ -2,6 +2,7 @@
 
 namespace G4NReact\MsCatalog;
 
+use G4NReact\MsCatalog\Client\ClientInterface;
 use G4NReact\MsCatalog\Document\AbstractField;
 
 /**
@@ -11,6 +12,7 @@ interface QueryInterface
 {
     /**
      * QueryInterface constructor.
+     *
      * @param ConfigInterface $config
      */
     public function __construct(ConfigInterface $config);
@@ -27,8 +29,8 @@ interface QueryInterface
     public function getQueryText();
 
     /**
-     * @param Field $field
-     * @param bool $negative defines if value must not appear in data
+     * @param \G4NReact\MsCatalog\Document\AbstractField $field
+     * @param bool $negative
      *
      * @return mixed
      */
@@ -80,7 +82,7 @@ interface QueryInterface
      * @param string $field
      * @return void
      */
-    public function addFieldToSelect(Field $field);
+    public function addFieldToSelect(AbstractField $field);
 
     /**
      * @param array $fields
@@ -120,12 +122,12 @@ interface QueryInterface
     public function setPageStart(int $pageStart): void;
 
     /**
-     * @param \G4NReact\MsCatalog\Document\Field $field
+     * @param \G4NReact\MsCatalog\Document\AbstractField $field
      * @param string|null $fieldname
      *
      * @return mixed
      */
-    public function addFacet(Field $field, string $fieldname = null);
+    public function addFacet(AbstractField $field, string $fieldname = null);
     /**
      * @param array $facets
      *
@@ -139,12 +141,12 @@ interface QueryInterface
     public function getFacets();
 
     /**
-     * @param \G4NReact\MsCatalog\Document\Field $statsField
+     * @param \G4NReact\MsCatalog\Document\AbstractField $statsField
      * @param string|null $statName
      *
      * @return mixed
      */
-    public function addStat(Field $statsField, string $statName = null);
+    public function addStat(AbstractField $statsField, string $statName = null);
     /**
      * @param array $stats
      *
