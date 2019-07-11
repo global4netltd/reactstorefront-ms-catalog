@@ -2,8 +2,6 @@
 
 namespace G4NReact\MsCatalog;
 
-use G4NReact\MsCatalog\Document\Field;
-
 /**
  * Interface QueryInterface
  */
@@ -35,11 +33,10 @@ interface QueryInterface
     public function addFilter(Field $field, $negative = false);
 
     /**
-     * @param $filter
-     * @param $value
-     * @return void
+     * @param array $filters
+     * @return $this
      */
-    public function addFilters($filters);
+    public function addFilters(array $filters);
 
     /**
      * @return void
