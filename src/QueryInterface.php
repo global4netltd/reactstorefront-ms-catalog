@@ -118,11 +118,12 @@ interface QueryInterface
     public function setPageStart(int $pageStart): void;
 
     /**
-     * @param array $facet
+     * @param \G4NReact\MsCatalog\Document\Field $field
+     * @param string|null $fieldname
      *
      * @return mixed
      */
-    public function addFacet($facet, $field);
+    public function addFacet(Field $field, string $fieldname = null);
     /**
      * @param array $facets
      *
@@ -136,11 +137,12 @@ interface QueryInterface
     public function getFacets();
 
     /**
-     * @param string $statsField
+     * @param \G4NReact\MsCatalog\Document\Field $statsField
+     * @param string|null $statName
      *
      * @return mixed
      */
-    public function addStat(string $statsField);
+    public function addStat(Field $statsField, string $statName = null);
     /**
      * @param array $stats
      *
