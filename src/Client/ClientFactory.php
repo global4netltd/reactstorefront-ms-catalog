@@ -38,14 +38,18 @@ class ClientFactory
     }
 
     /**
-     * @return ClientFactory|null
+     * @param ConfigInterface $config
+     * @param int $id
+     *
+     * @return mixed
+     * @throws Exception
      */
-    public static function getInstance()
+    public static function getInstance(ConfigInterface $config, int $id = 0)
     {
-        if(self::$instance == null){
-            self::$instance = new ClientFactory();
+        if(self::$instance[$id] == null){
+            self::$instance[$id] = ClientFactory::create($config);
         }
 
-        return self::$instance;
+        return self::$instance[$id];
     }
 }
