@@ -8,7 +8,7 @@ use G4NReact\MsCatalog\AbstractObject;
  * Class Field
  * @package G4NReact\MsCatalog\Document
  */
-class Field extends AbstractObject
+class AbstractField extends AbstractObject
 {
     const FIELD_TYPE_STATIC = 'static';
     const FIELD_TYPE_STRING = 'string';
@@ -22,7 +22,7 @@ class Field extends AbstractObject
     const FIELD_TYPE_BOOL = 'bool';
 
     /**
-     * @var string 
+     * @var string
      */
     protected $name;
 
@@ -57,12 +57,13 @@ class Field extends AbstractObject
      */
     public function __construct(
         string $name,
-        $value = null, 
+        $value = null,
         string $type = '',
         bool $indexable = false,
         bool $multiValued = false,
         array $args = []
-    ) {
+    )
+    {
         $this->setName($name);
         $this->setValue($value);
         $this->setType($type);
@@ -136,7 +137,7 @@ class Field extends AbstractObject
     /**
      * @return bool
      */
-    public function getIndexable(): bool 
+    public function getIndexable(): bool
     {
         return $this->indexable;
     }
@@ -178,5 +179,12 @@ class Field extends AbstractObject
     {
         return (string)$this->getValue();
     }
+
+    /**
+     * This function should return real field name
+     * which is used for this field in selected engine
+     * @return string
+     */
+    abstract function getFieldName();
 
 }
