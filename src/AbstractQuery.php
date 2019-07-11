@@ -110,7 +110,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \G4NReact\MsCatalog\Document\Field $field
+     * @param Field $field
      * @param bool $negative
      *
      * @return mixed|void
@@ -250,7 +250,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \G4NReact\MsCatalog\Document\Field $field
+     * @param Field $field
      * @param null|string $fieldname
      *
      * @return mixed|void
