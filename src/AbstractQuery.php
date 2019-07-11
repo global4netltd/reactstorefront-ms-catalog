@@ -3,6 +3,7 @@
 namespace G4NReact\MsCatalog;
 
 use G4NReact\MsCatalog\Client\ClientFactory;
+use G4NReact\MsCatalog\Document\Field;
 
 /**
  * Class QueryAbstract
@@ -10,6 +11,12 @@ use G4NReact\MsCatalog\Client\ClientFactory;
  */
 abstract class AbstractQuery implements QueryInterface
 {
+    /** @var string field */
+    const FIELD = 'field';
+    
+    /** @var string negative */
+    const NEGATIVE = 'negative';
+    
     /**
      * @var ConfigInterface
      */
@@ -19,7 +26,7 @@ abstract class AbstractQuery implements QueryInterface
      * @var ClientInterface
      */
     public $client;
-
+    
     /**
      * @var string
      */
@@ -28,7 +35,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @var array
      */
-    public $filters;
+    public $filters = [];
 
     /**
      * @var array
@@ -38,8 +45,8 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @var array
      */
-    public $fields;
-
+    public $fields = [];
+    
     /**
      * @var int
      */
@@ -58,7 +65,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @var array
      */
-    public $facets;
+    public $facets = [];
 
     /**
      * @var array
@@ -99,7 +106,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function getQueryText()
     {
-        return $this->queryText ?? '';
+        return $this->queryText;
     }
 
     /**
@@ -117,7 +124,6 @@ abstract class AbstractQuery implements QueryInterface
         
         return $this;
     }
-
 
     /**
      * @inheritDoc
@@ -244,14 +250,14 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param array $facet
-     * @param $field
+     * @param \G4NReact\MsCatalog\Document\Field $field
+     * @param null|string $fieldname
      *
      * @return mixed|void
      */
-    public function addFacet($facet, $field)
+    public function addFacet(Field $field, $fieldname = null)
     {
-        $this->facets[$facet] = $field;
+        $this->facets[$fieldname ?? $field->getName()] = $field;
     }
 
     /**
@@ -273,13 +279,14 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param string $statsField
+     * @param \G4NReact\MsCatalog\Document\Field $statsField
+     * @param string|null $statName
      *
      * @return mixed|void
      */
-    public function addStat(string $statsField)
+    public function addStat(Field $statsField, string $statName = null)
     {
-        $this->stats [] = $statsField;
+        $this->stats[$statName ?? $statsField->getName()] = $statsField;
     }
 
     /**
