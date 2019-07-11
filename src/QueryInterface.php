@@ -119,6 +119,36 @@ interface QueryInterface
     public function setPageStart(int $pageStart): void;
 
     /**
+     * @param array $facet
+     *
+     * @return mixed
+     */
+    public function addFacet($facet, $field);
+    /**
+     * @param array $facets
+     *
+     * @return mixed
+     */
+    public function addFacets(array $facets);
+
+    /**
+     * @return mixed
+     */
+    public function getFacets();
+
+    /**
+     * @param array $stats
+     *
+     * @return mixed
+     */
+    public function addStats(array $stats);
+
+    /**
+     * @return mixed
+     */
+    public function getStats();
+
+    /**
      * Build query and return instance of data which is
      * matching to engine library
      * @return mixed

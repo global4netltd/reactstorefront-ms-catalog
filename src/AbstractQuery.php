@@ -51,6 +51,16 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
     public $additionalOptions;
 
     /**
+     * @var array
+     */
+    public $facets;
+    
+    /**
+     * @var array
+     */
+    public $stats;
+
+    /**
      * QueryInterface constructor.
      * @param ConfigInterface $config
      */
@@ -216,6 +226,53 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
     public function setPageStart(int $pageStart): void
     {
         $this->pageStart = $pageStart;
+    }
+
+    /**
+     * @param array $facet
+     * @param $field
+     *
+     * @return mixed|void
+     */
+    public function addFacet($facet, $field)
+    {
+        $this->facets[$facet] = $field;
+    }
+
+    /**
+     * @param array $facets
+     *
+     * @return mixed|void
+     */
+    public function addFacets(array $facets)
+    {
+        $this->facets = array_merge($this->facets, $facets);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacets()
+    {
+        return $this->facets;
+    }
+
+    /**
+     * @param array $stats
+     *
+     * @return mixed|void
+     */
+    public function addStats(array $stats)
+    {
+        $this->stats = array_merge($this->stats, $stats);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStats()
+    {
+        return $this->stats;
     }
 
     /**
