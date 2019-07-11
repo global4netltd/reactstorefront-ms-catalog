@@ -41,7 +41,7 @@ class ClientFactory
      * @param ConfigInterface $config
      * @param int $id
      *
-     * @return mixed
+     * @return ClientInterface
      * @throws Exception
      */
     public static function getInstance(ConfigInterface $config, int $id = 0)
