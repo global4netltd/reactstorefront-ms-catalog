@@ -49,4 +49,13 @@ class Helper
             ],
         ],
     ];
+
+    /**
+     * @var array
+     */
+    public static $coreDocumentFieldsNames = [
+        'unique_id',
+        'object_id',
+        'object_type',
+    ];
 }

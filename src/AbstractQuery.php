@@ -2,18 +2,24 @@
 
 namespace G4NReact\MsCatalog;
 
-use G4NReact\MsCatalog\Client\ClientFactory;
+use Exception;
+use G4NReact\MsCatalog\Client\ClientInterface;
 
 /**
  * Class QueryAbstract
  * @package G4NReact
  */
-abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
+abstract class AbstractQuery implements QueryInterface
 {
     /**
      * @var ConfigInterface
      */
     public $config;
+
+    /**
+     * @var ClientInterface
+     */
+    public $client;
 
     /**
      * @var string
@@ -64,18 +70,21 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
      * QueryInterface constructor.
      *
      * @param ConfigInterface $config
+     * @param ClientInterface $client
      */
-    public function __construct(ConfigInterface $config)
+    public function __construct(ConfigInterface $config, ClientInterface $client)
     {
         $this->config = $config;
+        $this->client = $client;
     }
 
     /**
      * @return Client\ClientInterface
+     * @throws Exception
      */
     public function getClient()
     {
-        return ClientFactory::create($this->config);
+        return $this->client;
     }
 
     /**
@@ -103,6 +112,8 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
             'value' => $value,
             'negative' => false
         ];
+
+        return $this;
     }
 
     /**

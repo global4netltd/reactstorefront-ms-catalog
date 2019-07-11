@@ -4,7 +4,7 @@ namespace G4NReact\MsCatalog\Client;
 
 use G4NReact\MsCatalog\PullerInterface;
 use G4NReact\MsCatalog\PusherInterface;
-use G4NReact\MsCatalog\QueryBuilderInterface;
+use G4NReact\MsCatalog\QueryInterface;
 use G4NReact\MsCatalog\ResponseInterface;
 
 /**
@@ -59,7 +59,7 @@ interface ClientInterface
     public function getPusher(): PusherInterface;
 
     /**
-     * @return QueryBuilderInterface
+     * @return QueryInterface
      */
-    public function getQueryBuilder(): QueryBuilderInterface;
+    public function getQuery(): QueryInterface;
 }
