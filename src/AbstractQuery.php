@@ -54,7 +54,7 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
      * @var array
      */
     public $facets;
-    
+
     /**
      * @var array
      */
@@ -62,6 +62,7 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
 
     /**
      * QueryInterface constructor.
+     *
      * @param ConfigInterface $config
      */
     public function __construct(ConfigInterface $config)
@@ -74,7 +75,7 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
      */
     public function getClient()
     {
-       return ClientFactory::create($this->config);
+        return ClientFactory::create($this->config);
     }
 
     /**
@@ -90,7 +91,7 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
      */
     public function getQueryText()
     {
-        return $this->queryText;
+        return $this->queryText ?? '';
     }
 
     /**
@@ -99,7 +100,7 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
     public function addFilter($filter, $value, $negative = false)
     {
         $this->filters[$filter] = [
-            'value'    => $value,
+            'value' => $value,
             'negative' => false
         ];
     }
@@ -255,6 +256,16 @@ abstract class AbstractQuery implements \G4NReact\MsCatalog\QueryInterface
     public function getFacets()
     {
         return $this->facets;
+    }
+
+    /**
+     * @param string $statsField
+     *
+     * @return mixed|void
+     */
+    public function addStat(string $statsField)
+    {
+        $this->stats [] = $statsField;
     }
 
     /**

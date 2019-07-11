@@ -137,6 +137,12 @@ interface QueryInterface
     public function getFacets();
 
     /**
+     * @param string $statsField
+     *
+     * @return mixed
+     */
+    public function addStat(string $statsField);
+    /**
      * @param array $stats
      *
      * @return mixed
