@@ -76,7 +76,6 @@ abstract class AbstractQuery implements QueryInterface
      * QueryInterface constructor.
      *
      * @param ConfigInterface $config
-     * @param ClientInterface $client
      */
     public function __construct(ConfigInterface $config)
     {
@@ -110,10 +109,10 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param Field $field
+     * @param \G4NReact\MsCatalog\Document\AbstractField $field
      * @param bool $negative
      *
-     * @return mixed|void
+     * @return $this|mixed
      */
     public function addFilter(AbstractField $field, $negative = false)
     {
@@ -121,7 +120,7 @@ abstract class AbstractQuery implements QueryInterface
             self::FIELD => $field,
             self::NEGATIVE => $negative
         ];
-        
+
         return $this;
     }
 
@@ -130,7 +129,9 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function addFilters($filters)
     {
-        $this->filters = array_merge($this->filters, $filters);
+        foreach ($filters as $filter){
+            $this->addFilter($filter[0], $filter[2] ?? false);
+        }
     }
 
     /**
@@ -184,7 +185,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @inheritDoc
      */
-    public function addFieldToSelect(Field $field)
+    public function addFieldToSelect(AbstractField $field)
     {
         $this->fields[] = $field;
     }
@@ -250,12 +251,12 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param Field $field
-     * @param null|string $fieldname
+     * @param \G4NReact\MsCatalog\Document\AbstractField $field
+     * @param null $fieldname
      *
      * @return mixed|void
      */
-    public function addFacet(Field $field, $fieldname = null)
+    public function addFacet(AbstractField $field, $fieldname = null)
     {
         $this->facets[$fieldname ?? $field->getName()] = $field;
     }
@@ -284,11 +285,11 @@ abstract class AbstractQuery implements QueryInterface
      *
      * @return mixed|void
      */
-    public function addStat(Field $statsField, string $statName = null)
+    public function addStat(AbstractField $statsField, string $statName = null)
     {
         $this->stats[$statName ?? $statsField->getName()] = $statsField;
     }
-
+    
     /**
      * @param array $stats
      *
