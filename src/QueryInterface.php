@@ -2,6 +2,8 @@
 
 namespace G4NReact\MsCatalog;
 
+use G4NReact\MsCatalog\Document\AbstractField;
+
 /**
  * Interface QueryInterface
  */
@@ -30,7 +32,7 @@ interface QueryInterface
      *
      * @return mixed
      */
-    public function addFilter(Field $field, $negative = false);
+    public function addFilter(AbstractField $field, $negative = false);
 
     /**
      * @param array $filters

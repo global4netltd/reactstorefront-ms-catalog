@@ -3,7 +3,7 @@
 namespace G4NReact\MsCatalog;
 
 use G4NReact\MsCatalog\Client\ClientFactory;
-use G4NReact\MsCatalog\Document\Field;
+use G4NReact\MsCatalog\Document\AbstractField;
 
 /**
  * Class QueryAbstract
@@ -115,7 +115,7 @@ abstract class AbstractQuery implements QueryInterface
      *
      * @return mixed|void
      */
-    public function addFilter(Field $field, $negative = false)
+    public function addFilter(AbstractField $field, $negative = false)
     {
         $this->filters[$field->getName()] = [
             self::FIELD => $field,
