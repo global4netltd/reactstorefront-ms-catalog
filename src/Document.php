@@ -132,7 +132,7 @@ class Document extends AbstractObject
      *
      * @return $this
      */
-    public function setField($name, $value = null, $type = '', $indexable = false, $multiValued = false, $args = []): Document
+    public function createField($name, $value = null, $type = '', $indexable = false, $multiValued = false, $args = []): Document
     {
         if (!is_string($type)) {
             $type = '';
@@ -152,10 +152,18 @@ class Document extends AbstractObject
             }
         } else {
             $field = new Field($name, $value, $type, $indexable, $multiValued, $args);
-            $this->_data[$name] = $field;
+            $this->setField($field);
         }
 
         return $this;
+    }
+
+    /**
+     * @param Field $field
+     */
+    public function setField($field)
+    {
+        $this->_data[$field->getName()] = $field;
     }
 
     /**
