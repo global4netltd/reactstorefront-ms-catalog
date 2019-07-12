@@ -8,7 +8,7 @@ use G4NReact\MsCatalog\AbstractObject;
  * Class AbstractField
  * @package G4NReact\MsCatalog\Document
  */
-class AbstractField extends AbstractObject implements FieldInterface
+class Field extends AbstractObject implements FieldInterface
 {
     const FIELD_TYPE_STATIC = 'static';
     const FIELD_TYPE_STRING = 'string';
@@ -20,6 +20,19 @@ class AbstractField extends AbstractObject implements FieldInterface
     const FIELD_TYPE_FLOAT = 'float';
     const FIELD_TYPE_DOUBLE = 'double';
     const FIELD_TYPE_BOOL = 'bool';
+
+    static $availableTypes = [
+        self::FIELD_TYPE_STATIC,
+        self::FIELD_TYPE_STRING,
+        self::FIELD_TYPE_INT,
+        self::FIELD_TYPE_TEXT,
+        self::FIELD_TYPE_VARCHAR,
+        self::FIELD_TYPE_DATETIME,
+        self::FIELD_TYPE_DECIMAL,
+        self::FIELD_TYPE_FLOAT,
+        self::FIELD_TYPE_DOUBLE,
+        self::FIELD_TYPE_BOOL
+    ];
 
     /**
      * @var string
@@ -63,7 +76,8 @@ class AbstractField extends AbstractObject implements FieldInterface
         bool $indexable = false,
         bool $multiValued = false,
         array $args = []
-    ) {
+    )
+    {
         $this->setName($name);
         $this->setValue($value);
         $this->setType($type);
@@ -129,7 +143,11 @@ class AbstractField extends AbstractObject implements FieldInterface
      */
     public function setType(string $type): AbstractField
     {
-        $this->type = $type;
+        if (in_array($type, self::$availableTypes)) {
+            $this->type = $type;
+        } else {
+            $this->type = self::FIELD_TYPE_STATIC;
+        }
 
         return $this;
     }
@@ -185,12 +203,4 @@ class AbstractField extends AbstractObject implements FieldInterface
 
         return (string)$value;
     }
-
-    /**
-     * This function should return real field name
-     * which is used for this field in selected engine
-     * @return string
-     */
-//    abstract public function getFieldName();
-
 }
