@@ -8,7 +8,7 @@ use G4NReact\MsCatalog\AbstractObject;
  * Class AbstractField
  * @package G4NReact\MsCatalog\Document
  */
-class AbstractField extends AbstractObject
+class AbstractField extends AbstractObject implements FieldInterface
 {
     const FIELD_TYPE_STATIC = 'static';
     const FIELD_TYPE_STRING = 'string';
@@ -63,8 +63,7 @@ class AbstractField extends AbstractObject
         bool $indexable = false,
         bool $multiValued = false,
         array $args = []
-    )
-    {
+    ) {
         $this->setName($name);
         $this->setValue($value);
         $this->setType($type);
@@ -79,7 +78,7 @@ class AbstractField extends AbstractObject
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName(): string
     {
@@ -87,8 +86,7 @@ class AbstractField extends AbstractObject
     }
 
     /**
-     * @param mixed $name
-     *
+     * @param string $name
      * @return AbstractField
      */
     public function setName(string $name): AbstractField
@@ -108,7 +106,6 @@ class AbstractField extends AbstractObject
 
     /**
      * @param mixed $value
-     *
      * @return AbstractField
      */
     public function setValue($value): AbstractField
@@ -128,10 +125,9 @@ class AbstractField extends AbstractObject
 
     /**
      * @param string $type
-     *
      * @return AbstractField
      */
-    public function setType(string $type)
+    public function setType(string $type): AbstractField
     {
         $this->type = $type;
 
@@ -148,7 +144,6 @@ class AbstractField extends AbstractObject
 
     /**
      * @param bool $indexable
-     *
      * @return AbstractField
      */
     public function setIndexable(bool $indexable): AbstractField
@@ -183,7 +178,12 @@ class AbstractField extends AbstractObject
      */
     public function __toString(): string
     {
-        return (string)$this->getValue();
+        $value = $this->getValue();
+        if (is_array($value)) {
+            return implode(', ', $value);
+        }
+
+        return (string)$value;
     }
 
     /**
