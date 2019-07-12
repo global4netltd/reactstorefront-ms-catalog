@@ -2,6 +2,7 @@
 
 namespace G4NReact\MsCatalog;
 
+use G4NReact\MsCatalog\Document\AbstractField;
 use G4NReact\MsCatalog\Document\Field;
 
 /**

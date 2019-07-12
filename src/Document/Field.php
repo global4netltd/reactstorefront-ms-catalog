@@ -5,7 +5,7 @@ namespace G4NReact\MsCatalog\Document;
 use G4NReact\MsCatalog\AbstractObject;
 
 /**
- * Class AbstractField
+ * Class Field
  * @package G4NReact\MsCatalog\Document
  */
 class Field extends AbstractObject implements FieldInterface
@@ -60,7 +60,7 @@ class Field extends AbstractObject implements FieldInterface
     protected $multiValued;
 
     /**
-     * AbstractField constructor
+     * Field constructor
      *
      * @param string $name
      * @param mixed $value
@@ -101,9 +101,9 @@ class Field extends AbstractObject implements FieldInterface
 
     /**
      * @param string $name
-     * @return AbstractField
+     * @return Field
      */
-    public function setName(string $name): AbstractField
+    public function setName(string $name): Field
     {
         $this->name = $name;
 
@@ -120,9 +120,9 @@ class Field extends AbstractObject implements FieldInterface
 
     /**
      * @param mixed $value
-     * @return AbstractField
+     * @return Field
      */
-    public function setValue($value): AbstractField
+    public function setValue($value): Field
     {
         $this->value = $value;
 
@@ -139,9 +139,9 @@ class Field extends AbstractObject implements FieldInterface
 
     /**
      * @param string $type
-     * @return AbstractField
+     * @return Field
      */
-    public function setType(string $type): AbstractField
+    public function setType(string $type): Field
     {
         if (in_array($type, self::$availableTypes)) {
             $this->type = $type;
@@ -162,9 +162,9 @@ class Field extends AbstractObject implements FieldInterface
 
     /**
      * @param bool $indexable
-     * @return AbstractField
+     * @return Field
      */
-    public function setIndexable(bool $indexable): AbstractField
+    public function setIndexable(bool $indexable): Field
     {
         $this->indexable = $indexable;
 
@@ -182,9 +182,9 @@ class Field extends AbstractObject implements FieldInterface
     /**
      * @param bool $multiValued
      *
-     * @return AbstractField
+     * @return Field
      */
-    public function setMultiValued(bool $multiValued): AbstractField
+    public function setMultiValued(bool $multiValued): Field
     {
         $this->multiValued = $multiValued;
 

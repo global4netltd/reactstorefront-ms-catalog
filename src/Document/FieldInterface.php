@@ -15,9 +15,9 @@ interface FieldInterface
 
     /**
      * @param string $name
-     * @return AbstractField
+     * @return Field
      */
-    public function setName(string $name): AbstractField;
+    public function setName(string $name): Field;
 
     /**
      * @return mixed
@@ -26,9 +26,9 @@ interface FieldInterface
 
     /**
      * @param mixed $value
-     * @return AbstractField
+     * @return Field
      */
-    public function setValue($value): AbstractField;
+    public function setValue($value): Field;
 
     /**
      * @return string
@@ -37,9 +37,9 @@ interface FieldInterface
 
     /**
      * @param string $type
-     * @return AbstractField
+     * @return Field
      */
-    public function setType(string $type): AbstractField;
+    public function setType(string $type): Field;
 
     /**
      * @return bool
@@ -48,9 +48,9 @@ interface FieldInterface
 
     /**
      * @param bool $indexable
-     * @return AbstractField
+     * @return Field
      */
-    public function setIndexable(bool $indexable): AbstractField;
+    public function setIndexable(bool $indexable): Field;
 
     /**
      * @return bool
@@ -59,7 +59,7 @@ interface FieldInterface
 
     /**
      * @param bool $multiValued
-     * @return AbstractField
+     * @return Field
      */
-    public function setMultiValued(bool $multiValued): AbstractField;
+    public function setMultiValued(bool $multiValued): Field;
 }

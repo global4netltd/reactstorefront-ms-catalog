@@ -3,7 +3,7 @@
 namespace G4NReact\MsCatalog;
 
 use G4NReact\MsCatalog\Client\ClientFactory;
-use G4NReact\MsCatalog\Document\AbstractField;
+use G4NReact\MsCatalog\Document\Field;
 
 /**
  * Class QueryAbstract
@@ -70,7 +70,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @var array
      */
-    public $stats;
+    public $stats = [];
 
     /**
      * QueryInterface constructor.
@@ -109,12 +109,12 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \G4NReact\MsCatalog\Document\AbstractField $field
+     * @param \G4NReact\MsCatalog\Document\Field $field
      * @param bool $negative
      *
      * @return $this|mixed
      */
-    public function addFilter(AbstractField $field, $negative = false)
+    public function addFilter(Field $field, $negative = false)
     {
         $this->filters[$field->getName()] = [
             self::FIELD => $field,
@@ -130,7 +130,7 @@ abstract class AbstractQuery implements QueryInterface
     public function addFilters($filters)
     {
         foreach ($filters as $filter){
-            $this->addFilter($filter[0], $filter[2] ?? false);
+            $this->addFilter($filter[0], $filter[1] ?? false);
         }
     }
 
@@ -185,7 +185,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @inheritDoc
      */
-    public function addFieldToSelect(AbstractField $field)
+    public function addFieldToSelect(Field $field)
     {
         $this->fields[] = $field;
     }
@@ -251,12 +251,12 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \G4NReact\MsCatalog\Document\AbstractField $field
+     * @param \G4NReact\MsCatalog\Document\Field $field
      * @param null $fieldname
      *
      * @return mixed|void
      */
-    public function addFacet(AbstractField $field, $fieldname = null)
+    public function addFacet(Field $field, $fieldname = null)
     {
         $this->facets[$fieldname ?? $field->getName()] = $field;
     }
@@ -285,7 +285,7 @@ abstract class AbstractQuery implements QueryInterface
      *
      * @return mixed|void
      */
-    public function addStat(AbstractField $statsField, string $statName = null)
+    public function addStat(Field $statsField, string $statName = null)
     {
         $this->stats[$statName ?? $statsField->getName()] = $statsField;
     }
