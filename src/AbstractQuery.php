@@ -2,6 +2,7 @@
 
 namespace G4NReact\MsCatalog;
 
+use Exception;
 use G4NReact\MsCatalog\Client\ClientFactory;
 use G4NReact\MsCatalog\Document\Field;
 
@@ -13,10 +14,10 @@ abstract class AbstractQuery implements QueryInterface
 {
     /** @var string field */
     const FIELD = 'field';
-    
+
     /** @var string negative */
     const NEGATIVE = 'negative';
-    
+
     /**
      * @var ConfigInterface
      */
@@ -26,7 +27,7 @@ abstract class AbstractQuery implements QueryInterface
      * @var ClientInterface
      */
     public $client;
-    
+
     /**
      * @var string
      */
@@ -46,7 +47,7 @@ abstract class AbstractQuery implements QueryInterface
      * @var array
      */
     public $fields = [];
-    
+
     /**
      * @var int
      */
@@ -76,6 +77,7 @@ abstract class AbstractQuery implements QueryInterface
      * QueryInterface constructor.
      *
      * @param ConfigInterface $config
+     * @throws Exception
      */
     public function __construct(ConfigInterface $config)
     {
@@ -109,7 +111,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \G4NReact\MsCatalog\Document\Field $field
+     * @param Field $field
      * @param bool $negative
      *
      * @return $this|mixed
@@ -127,9 +129,9 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @inheritDoc
      */
-    public function addFilters($filters)
+    public function addFilters(array $filters)
     {
-        foreach ($filters as $filter){
+        foreach ($filters as $filter) {
             $this->addFilter($filter[0], $filter[1] ?? false);
         }
     }
@@ -214,7 +216,6 @@ abstract class AbstractQuery implements QueryInterface
         $this->additionalOptions = $options;
     }
 
-
     /**
      * @inheritDoc
      */
@@ -222,7 +223,6 @@ abstract class AbstractQuery implements QueryInterface
     {
         return $this->pageSize;
     }
-
 
     /**
      * @inheritDoc
@@ -232,15 +232,13 @@ abstract class AbstractQuery implements QueryInterface
         $this->pageSize = $pageSize;
     }
 
-
     /**
      * @inheritDoc
      */
     public function getPageStart(): int
     {
-        return $this->pageStart;
+        return $this->pageStart ?: 0;
     }
-
 
     /**
      * @inheritDoc
@@ -251,7 +249,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \G4NReact\MsCatalog\Document\Field $field
+     * @param Field $field
      * @param null $fieldname
      *
      * @return mixed|void
@@ -280,7 +278,7 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @param \G4NReact\MsCatalog\Document\Field $statsField
+     * @param Field $statsField
      * @param string|null $statName
      *
      * @return mixed|void
@@ -289,7 +287,7 @@ abstract class AbstractQuery implements QueryInterface
     {
         $this->stats[$statName ?? $statsField->getName()] = $statsField;
     }
-    
+
     /**
      * @param array $stats
      *
@@ -317,5 +315,4 @@ abstract class AbstractQuery implements QueryInterface
      * @inheritDoc
      */
     abstract public function getResponse();
-
 }
