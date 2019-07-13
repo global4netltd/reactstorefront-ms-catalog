@@ -29,7 +29,7 @@ interface QueryInterface
     public function getQueryText();
 
     /**
-     * @param \G4NReact\MsCatalog\Document\Field $field
+     * @param Field $field
      * @param bool $negative
      *
      * @return mixed
@@ -122,12 +122,13 @@ interface QueryInterface
     public function setPageStart(int $pageStart): void;
 
     /**
-     * @param \G4NReact\MsCatalog\Document\Field $field
+     * @param Field $field
      * @param string|null $fieldname
      *
      * @return mixed
      */
-    public function addFacet(Field $field, string $fieldname = null);
+    public function addFacet(Field $field, ?string $fieldname = null);
+
     /**
      * @param array $facets
      *
@@ -141,7 +142,7 @@ interface QueryInterface
     public function getFacets();
 
     /**
-     * @param \G4NReact\MsCatalog\Document\Field $statsField
+     * @param Field $statsField
      * @param string|null $statName
      *
      * @return mixed

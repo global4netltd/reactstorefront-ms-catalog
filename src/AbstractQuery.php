@@ -250,11 +250,11 @@ abstract class AbstractQuery implements QueryInterface
 
     /**
      * @param Field $field
-     * @param null $fieldname
+     * @param string|null $fieldname
      *
      * @return mixed|void
      */
-    public function addFacet(Field $field, $fieldname = null)
+    public function addFacet(Field $field, ?string $fieldname = null)
     {
         $this->facets[$fieldname ?? $field->getName()] = $field;
     }
