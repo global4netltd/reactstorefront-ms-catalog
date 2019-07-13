@@ -2,6 +2,8 @@
 
 namespace G4NReact\MsCatalog;
 
+use Exception;
+
 /**
  * Class AbstractObject
  * @package G4NReact\MsCatalog
@@ -24,6 +26,7 @@ abstract class AbstractObject
      * @param $method
      * @param $args
      * @return bool|AbstractObject|mixed|null
+     * @throws Exception
      */
     public function __call($method, $args)
     {
@@ -47,6 +50,7 @@ abstract class AbstractObject
                 $name = $this->_uncamelize(substr($method,3));
                 return isset($this->$_data[$name]);
         }
+
         throw new Exception("Invalid method ".get_class($this)."::".$method."(".print_r($args,1).")");
     }
 
