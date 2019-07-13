@@ -55,7 +55,7 @@ class Helper
      */
     public static $coreDocumentFieldsNames = [
         'unique_id',
-        'object_id',
+        'id',
         'object_type',
     ];
 }
