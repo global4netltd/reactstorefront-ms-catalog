@@ -87,7 +87,7 @@ class Document extends AbstractObject
     }
 
     /**
-     * @return array
+     * @return Field[]
      */
     public function getFields(): array
     {
