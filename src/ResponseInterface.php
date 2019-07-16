@@ -12,6 +12,66 @@ use G4NReact\MsCatalogSolr\Response;
 interface ResponseInterface
 {
     /**
+     * @return int
+     */
+    public function getNumFound(): int;
+
+    /**
+     * @param int $numFound
+     * @return ResponseInterface
+     */
+    public function setNumFound(int $numFound): ResponseInterface;
+
+    /**
+     * @return array
+     */
+    public function getDocumentsCollection(): array;
+
+    /**
+     * @param array $documentsCollection
+     * @return ResponseInterface
+     */
+    public function setDocumentsCollection(array $documentsCollection): ResponseInterface;
+
+    /**
+     * @return Document
+     */
+    public function getFirstItem(): Document;
+
+    /**
+     * @return array|null
+     */
+    public function getFacets(): ?array;
+
+    /**
+     * @param array $facets
+     * @return ResponseInterface
+     */
+    public function setFacets(array $facets): ResponseInterface;
+
+    /**
+     * @return array|null
+     */
+    public function getStats(): ?array;
+
+    /**
+     * @param array $stats
+     * @return ResponseInterface
+     */
+    public function setStats(array $stats): ResponseInterface;
+
+    /**
+     * @return int
+     */
+    public function getCurrentPage(): int;
+
+    /**
+     * @param int $currentPage
+     * @return ResponseInterface
+     */
+    public function setCurrentPage(int $currentPage): ResponseInterface;
+
+    /**
      * @param int $statusCode
      * @return ResponseInterface
      */

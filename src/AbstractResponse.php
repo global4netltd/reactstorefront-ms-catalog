@@ -29,7 +29,7 @@ abstract class AbstractResponse implements ResponseInterface
     protected $stats = [];
 
     /**
-     * @var array
+     * @var int
      */
     protected $currentPage;
 
@@ -82,7 +82,7 @@ abstract class AbstractResponse implements ResponseInterface
     }
 
     /**
-     * @return Document|null
+     * @return Document
      */
     public function getFirstItem(): Document
     {
@@ -133,18 +133,18 @@ abstract class AbstractResponse implements ResponseInterface
     }
 
     /**
-     * @return array
+     * @return int
      */
-    public function getCurrentPage(): array
+    public function getCurrentPage(): int
     {
         return $this->currentPage;
     }
 
     /**
-     * @param array $currentPage
+     * @param int $currentPage
      * @return ResponseInterface
      */
-    public function setCurrentPage(array $currentPage): ResponseInterface
+    public function setCurrentPage(int $currentPage): ResponseInterface
     {
         $this->currentPage = $currentPage;
 
