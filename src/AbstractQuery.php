@@ -156,7 +156,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @inheritDoc
      */
-    public function addSort($field, $direction = 'ASC')
+    public function addSort(Field $field, string $direction)
     {
         $this->sort[] = [
             'field' => $field,
@@ -169,7 +169,9 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function setSort(array $fields)
     {
-        $this->sort = $fields;
+        foreach ($fields as $field){
+            $this->addSort($field[0], $field[1] ?? 'ASC');
+        }
     }
 
     /**

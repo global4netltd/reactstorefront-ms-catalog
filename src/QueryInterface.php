@@ -53,11 +53,11 @@ interface QueryInterface
     public function getFilters();
 
     /**
-     * @param $field
-     * @param $direction
+     * @param Field $field
+     * @param string $direction
      * @return void
      */
-    public function addSort($field, $direction);
+    public function addSort(Field $field, string $direction);
 
     /**
      * Replace current sort fields with new one
