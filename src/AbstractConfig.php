@@ -89,4 +89,12 @@ abstract class AbstractConfig implements ConfigInterface
     {
         return $this->engineParams['connection'] ?? [];
     }
+
+    /**
+     * @return bool
+     */
+    public function isDebugEnabled(): bool
+    {
+        return $this->engineParams['debug_enabled'] ?? false;
+    }
 }

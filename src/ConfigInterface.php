@@ -48,4 +48,9 @@ interface ConfigInterface
      * @return array
      */
     public function getEngineConnectionArray(): array;
+
+    /**
+     * @return bool
+     */
+    public function isDebugEnabled(): bool;
 }
