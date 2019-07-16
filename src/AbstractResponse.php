@@ -63,7 +63,7 @@ abstract class AbstractResponse implements ResponseInterface
     }
 
     /**
-     * @return array
+     * @return Document[]
      */
     public function getDocumentsCollection(): array
     {
