@@ -104,4 +104,15 @@ interface ResponseInterface
      * @throws Exception
      */
     public function getQuery();
+
+    /**
+     * @param array $debugInfo
+     * @return ResponseInterface
+     */
+    public function setDebugInfo(array $debugInfo): ResponseInterface;
+
+    /**
+     * @return array
+     */
+    public function getDebugInfo(): array;
 }
