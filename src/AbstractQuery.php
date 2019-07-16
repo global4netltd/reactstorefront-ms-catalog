@@ -225,7 +225,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function getPageSize(): int
     {
-        return $this->pageSize;
+        return $this->pageSize ?: 500;
     }
 
     /**
