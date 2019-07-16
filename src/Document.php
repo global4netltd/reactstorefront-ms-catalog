@@ -105,7 +105,7 @@ class Document extends AbstractObject
     /**
      * @param string $name
      *
-     * @return mixed|null
+     * @return Field|null
      */
     public function getField(string $name)
     {
@@ -119,7 +119,7 @@ class Document extends AbstractObject
      */
     public function getFieldValue(string $name)
     {
-        return $this->getData($name) ? $this->getData($name)->getValue() : null;
+        return $this->getField($name) ? $this->getField($name)->getValue() : null;
     }
 
     /**

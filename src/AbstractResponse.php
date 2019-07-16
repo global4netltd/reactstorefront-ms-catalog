@@ -90,7 +90,7 @@ abstract class AbstractResponse implements ResponseInterface
         if (isset($arrayKeys[0])) {
             return $this->documentsCollection[$arrayKeys[0]];
         } else {
-            return new Document;
+            return new Document();
         }
     }
 

@@ -21,7 +21,7 @@ class Field extends AbstractObject implements FieldInterface
     const FIELD_TYPE_DOUBLE = 'double';
     const FIELD_TYPE_BOOL = 'bool';
 
-    static $availableTypes = [
+    public static $availableTypes = [
         self::FIELD_TYPE_STATIC,
         self::FIELD_TYPE_STRING,
         self::FIELD_TYPE_INT,
@@ -73,11 +73,10 @@ class Field extends AbstractObject implements FieldInterface
         string $name,
         $value = null,
         string $type = '',
-        bool $indexable = false,
+        bool $indexable = true,
         bool $multiValued = false,
         array $args = []
-    )
-    {
+    ) {
         $this->setName($name);
         $this->setValue($value);
         $this->setType($type);

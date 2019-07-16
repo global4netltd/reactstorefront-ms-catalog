@@ -85,7 +85,7 @@ interface QueryInterface
     public function addFieldToSelect(Field $field);
 
     /**
-     * @param array $fields
+     * @param Field[] $fields
      * @return void
      */
     public function addFieldsToSelect(array $fields);

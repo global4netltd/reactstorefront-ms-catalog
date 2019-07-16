@@ -2,6 +2,10 @@
 
 namespace G4NReact\MsCatalog;
 
+use Exception;
+use G4NReact\MsCatalog\QueryInterface as MsCatalogQueryInterface;
+use G4NReact\MsCatalogSolr\Response;
+
 /**
  * Interface ResponseInterface
  */
@@ -28,4 +32,16 @@ interface ResponseInterface
      * @return string
      */
     public function getStatusMessage(): string;
+
+    /**
+     * @param $query
+     * @return Response
+     */
+    public function setQuery($query);
+
+    /**
+     * @return MsCatalogQueryInterface|String
+     * @throws Exception
+     */
+    public function getQuery();
 }
