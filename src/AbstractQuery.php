@@ -77,6 +77,7 @@ abstract class AbstractQuery implements QueryInterface
      * QueryInterface constructor.
      *
      * @param ConfigInterface $config
+     *
      * @throws Exception
      */
     public function __construct(ConfigInterface $config)
@@ -155,9 +156,12 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @inheritDoc
      */
-    public function addSort($field, $direction)
+    public function addSort($field, $direction = 'ASC')
     {
-        $this->sort[] = [$field, $direction];
+        $this->sort[] = [
+            'field' => $field,
+            'direction' => $direction
+        ];
     }
 
     /**
