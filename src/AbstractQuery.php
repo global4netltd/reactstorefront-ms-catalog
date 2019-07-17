@@ -5,6 +5,7 @@ namespace G4NReact\MsCatalog;
 use Exception;
 use G4NReact\MsCatalog\Client\ClientFactory;
 use G4NReact\MsCatalog\Document\Field;
+use G4NReact\MsCatalogSolr\FieldHelper;
 
 /**
  * Class QueryAbstract
@@ -119,10 +120,12 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function addFilter(Field $field, $negative = false)
     {
-        $this->filters[$field->getName()] = [
-            self::FIELD => $field,
-            self::NEGATIVE => $negative
-        ];
+        if ($field->getIndexable() || $field->getType() === Field::FIELD_TYPE_STATIC) {
+            $this->filters[$field->getName()] = [
+                self::FIELD    => $field,
+                self::NEGATIVE => $negative
+            ];
+        }
 
         return $this;
     }
@@ -158,10 +161,12 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function addSort(Field $field, string $direction)
     {
-        $this->sort[] = [
-            'field' => $field,
-            'direction' => $direction
-        ];
+        if ($field->getIndexable() || $field->getType() === Field::FIELD_TYPE_STATIC) {
+            $this->sort[] = [
+                'field'     => $field,
+                'direction' => $direction
+            ];
+        }
     }
 
     /**
