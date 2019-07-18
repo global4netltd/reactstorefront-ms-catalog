@@ -2,7 +2,6 @@
 
 namespace G4NReact\MsCatalog;
 
-use G4NReact\MsCatalog\Client\ClientInterface;
 use G4NReact\MsCatalog\Document\Field;
 
 /**
@@ -168,8 +167,8 @@ interface QueryInterface
     public function buildQuery();
 
     /**
-     * Run query and get response (@return Response
-     * @see Response) from
+     * Run query and get response (@return ResponseInterface
+     * @see ResponseInterface) from
      * selected engine library
      */
     public function getResponse();
