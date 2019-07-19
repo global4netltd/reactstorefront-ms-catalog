@@ -20,6 +20,10 @@ class Field extends AbstractObject implements FieldInterface
     const FIELD_TYPE_FLOAT = 'float';
     const FIELD_TYPE_DOUBLE = 'double';
     const FIELD_TYPE_BOOL = 'bool';
+    const FIELD_TYPE_MEDIUMTEXT = 'mediumtext';
+    const FIELD_TYPE_SMALLINT = 'smallint';
+    const FIELD_TYPE_TIMESTAMP = 'timestamp';
+    const FIELD_TYPE_DATE = 'date';
 
     public static $availableTypes = [
         self::FIELD_TYPE_STATIC,
@@ -31,7 +35,11 @@ class Field extends AbstractObject implements FieldInterface
         self::FIELD_TYPE_DECIMAL,
         self::FIELD_TYPE_FLOAT,
         self::FIELD_TYPE_DOUBLE,
-        self::FIELD_TYPE_BOOL
+        self::FIELD_TYPE_BOOL,
+        self::FIELD_TYPE_MEDIUMTEXT,
+        self::FIELD_TYPE_SMALLINT,
+        self::FIELD_TYPE_TIMESTAMP,
+        self::FIELD_TYPE_DATE
     ];
 
     /**
