@@ -32,6 +32,13 @@ interface ClientInterface
      *
      * @return ResponseInterface
      */
+    public function deleteByFields(array $fields) : ResponseInterface;
+
+    /**
+     * @param array $fields
+     *
+     * @return ResponseInterface
+     */
     public function add(array $fields): ResponseInterface;
 
     /**
