@@ -23,7 +23,7 @@ interface ResponseInterface
     public function setNumFound(int $numFound): ResponseInterface;
 
     /**
-     * @return array
+     * @return Document[]
      */
     public function getDocumentsCollection(): array;
 
