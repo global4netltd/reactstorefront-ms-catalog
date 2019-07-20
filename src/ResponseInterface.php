@@ -94,13 +94,13 @@ interface ResponseInterface
     public function getStatusMessage(): string;
 
     /**
-     * @param $query
+     * @param MsCatalogQueryInterface $query
      * @return Response
      */
-    public function setQuery($query);
+    public function setQuery(MsCatalogQueryInterface $query);
 
     /**
-     * @return MsCatalogQueryInterface|String
+     * @return MsCatalogQueryInterface|string
      * @throws Exception
      */
     public function getQuery();
