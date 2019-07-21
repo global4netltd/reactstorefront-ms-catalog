@@ -5,7 +5,6 @@ namespace G4NReact\MsCatalog;
 use Exception;
 use G4NReact\MsCatalog\Client\ClientFactory;
 use G4NReact\MsCatalog\Document\Field;
-use G4NReact\MsCatalogSolr\FieldHelper;
 
 /**
  * Class QueryAbstract
@@ -157,6 +156,19 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
+     * @param $name
+     * @return Field|Null
+     */
+    public function getFilter($name)
+    {
+        if (isset($this->filters[$name])) {
+            return $this->filters[$name];
+        }
+
+        return null;
+    }
+
+    /**
      * @inheritDoc
      */
     public function addSort(Field $field, string $direction)
@@ -174,7 +186,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function setSort(array $fields)
     {
-        foreach ($fields as $field){
+        foreach ($fields as $field) {
             $this->addSort($field[0], $field[1] ?? 'ASC');
         }
     }

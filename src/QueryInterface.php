@@ -52,6 +52,12 @@ interface QueryInterface
     public function getFilters();
 
     /**
+     * @param $name
+     * @return Field|Null
+     */
+    public function getFilter($name);
+
+    /**
      * @param Field $field
      * @param string $direction
      * @return void
