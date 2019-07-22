@@ -24,6 +24,7 @@ class Field extends AbstractObject implements FieldInterface
     const FIELD_TYPE_SMALLINT = 'smallint';
     const FIELD_TYPE_TIMESTAMP = 'timestamp';
     const FIELD_TYPE_DATE = 'date';
+    const FIELD_TYPE_TEXT_SEARCH = 'text_search';
 
     public static $availableTypes = [
         self::FIELD_TYPE_STATIC,
@@ -39,7 +40,8 @@ class Field extends AbstractObject implements FieldInterface
         self::FIELD_TYPE_MEDIUMTEXT,
         self::FIELD_TYPE_SMALLINT,
         self::FIELD_TYPE_TIMESTAMP,
-        self::FIELD_TYPE_DATE
+        self::FIELD_TYPE_DATE,
+        self::FIELD_TYPE_TEXT_SEARCH
     ];
 
     /**
