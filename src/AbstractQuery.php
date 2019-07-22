@@ -187,7 +187,9 @@ abstract class AbstractQuery implements QueryInterface
     public function setSort(array $fields)
     {
         foreach ($fields as $field) {
-            $this->addSort($field[0], $field[1] ?? 'ASC');
+            if (isset($field[0])) {
+                $this->addSort($field[0], $field[1] ?? 'ASC');
+            }
         }
     }
 
