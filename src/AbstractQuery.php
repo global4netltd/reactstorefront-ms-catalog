@@ -135,7 +135,9 @@ abstract class AbstractQuery implements QueryInterface
     public function addFilters(array $filters)
     {
         foreach ($filters as $filter) {
-            $this->addFilter($filter[0], $filter[1] ?? false);
+            if (isset($filter[0])) {
+                $this->addFilter($filter[0], $filter[1] ?? false);
+            }
         }
     }
 
