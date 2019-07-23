@@ -86,7 +86,8 @@ class Field extends AbstractObject implements FieldInterface
         bool $indexable = true,
         bool $multiValued = false,
         array $args = []
-    ) {
+    )
+    {
         $this->setName($name);
         $this->setValue($value);
         $this->setType($type);
@@ -124,6 +125,16 @@ class Field extends AbstractObject implements FieldInterface
      */
     public function getValue()
     {
+        if (!is_array($this->value)) {
+            switch ($this->getType()) {
+                case self::FIELD_TYPE_INT:
+                case self::FIELD_TYPE_FLOAT:
+                    return (int)$this->value;
+                case self::FIELD_TYPE_BOOL:
+                    return (bool)$this->value;
+            }
+        }
+
         return $this->value;
     }
 
