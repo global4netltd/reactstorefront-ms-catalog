@@ -18,6 +18,12 @@ abstract class AbstractQuery implements QueryInterface
     /** @var string negative */
     const NEGATIVE = 'negative';
 
+    /** @var string operator */
+    const OPERATOR = 'operator';
+
+    /** @var string OR operator */
+    const OR_OPERATOR = 'OR';
+
     /**
      * @var ConfigInterface
      */
@@ -114,15 +120,17 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @param Field $field
      * @param bool $negative
+     * @param string $operator
      *
      * @return $this|mixed
      */
-    public function addFilter(Field $field, $negative = false)
+    public function addFilter(Field $field, $negative = false, string $operator = 'AND')
     {
         if ($field->getIndexable() || $field->getType() === Field::FIELD_TYPE_STATIC) {
             $this->filters[$field->getName()] = [
                 self::FIELD    => $field,
-                self::NEGATIVE => $negative
+                self::NEGATIVE => $negative,
+                self::OPERATOR => $operator
             ];
         }
 
@@ -136,7 +144,7 @@ abstract class AbstractQuery implements QueryInterface
     {
         foreach ($filters as $filter) {
             if (isset($filter[0])) {
-                $this->addFilter($filter[0], $filter[1] ?? false);
+                $this->addFilter($filter[0], $filter[1] ?? false, $filter[2] ?? 'AND');
             }
         }
     }

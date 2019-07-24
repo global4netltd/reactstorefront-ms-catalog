@@ -30,10 +30,11 @@ interface QueryInterface
     /**
      * @param Field $field
      * @param bool $negative
+     * @param string $operator
      *
      * @return mixed
      */
-    public function addFilter(Field $field, $negative = false);
+    public function addFilter(Field $field, $negative = false, string $operator = 'AND');
 
     /**
      * @param array $filters
