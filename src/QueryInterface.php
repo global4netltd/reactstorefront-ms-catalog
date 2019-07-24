@@ -60,21 +60,20 @@ interface QueryInterface
 
     /**
      * @param Field $field
-     * @param string $direction
      * @return void
      */
-    public function addSort(Field $field, string $direction);
+    public function addSort(Field $field);
 
     /**
      * Replace current sort fields with new one
      * Array should be build in field => direction convention
-     * @param array $fields
+     * @param Field[] $fields
      * @return void
      */
     public function setSort(array $fields);
 
     /**
-     * @return mixed
+     * @return Field[]
      */
     public function getSort();
 

@@ -2,6 +2,8 @@
 
 namespace G4NReact\MsCatalog;
 
+use Solarium\Component\Result\Stats\Stats;
+
 /**
  * Class Response
  * @package G4NReact\MsCatalog
@@ -116,16 +118,16 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * @return array
      */
-    public function getStats(): array
+    public function getStats(): Stats
     {
         return $this->stats;
     }
 
     /**
-     * @param array $stats
+     * @param Stats $stats
      * @return ResponseInterface
      */
-    public function setStats(array $stats): ResponseInterface
+    public function setStats(Stats $stats): ResponseInterface
     {
         $this->stats = $stats;
 

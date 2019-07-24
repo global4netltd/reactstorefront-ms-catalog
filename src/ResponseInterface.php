@@ -5,6 +5,7 @@ namespace G4NReact\MsCatalog;
 use Exception;
 use G4NReact\MsCatalog\QueryInterface as MsCatalogQueryInterface;
 use G4NReact\MsCatalogSolr\Response;
+use Solarium\Component\Result\Stats\Stats;
 
 /**
  * Interface ResponseInterface
@@ -52,13 +53,13 @@ interface ResponseInterface
     /**
      * @return array|null
      */
-    public function getStats(): ?array;
+    public function getStats(): ?Stats;
 
     /**
      * @param array $stats
      * @return ResponseInterface
      */
-    public function setStats(array $stats): ResponseInterface;
+    public function setStats(Stats $stats): ResponseInterface;
 
     /**
      * @return int

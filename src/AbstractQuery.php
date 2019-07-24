@@ -181,13 +181,10 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @inheritDoc
      */
-    public function addSort(Field $field, string $direction)
+    public function addSort(Field $field)
     {
         if ($field->getIndexable() || $field->getType() === Field::FIELD_TYPE_STATIC) {
-            $this->sort[] = [
-                'field'     => $field,
-                'direction' => $direction
-            ];
+            $this->sort[] = $field;
         }
     }
 
@@ -197,9 +194,7 @@ abstract class AbstractQuery implements QueryInterface
     public function setSort(array $fields)
     {
         foreach ($fields as $field) {
-            if (isset($field[0])) {
-                $this->addSort($field[0], $field[1] ?? 'ASC');
-            }
+            $this->addSort($field);
         }
     }
 
@@ -314,7 +309,7 @@ abstract class AbstractQuery implements QueryInterface
 
     /**
      * @param Field $statsField
-     * @param string|null $statName
+     * @param string $statName
      *
      * @return mixed|void
      */
