@@ -118,7 +118,7 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * @return array
      */
-    public function getStats(): Stats
+    public function getStats(): array
     {
         return $this->stats;
     }

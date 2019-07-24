@@ -53,7 +53,7 @@ interface ResponseInterface
     /**
      * @return array|null
      */
-    public function getStats(): ?Stats;
+    public function getStats(): ?array;
 
     /**
      * @param array $stats
