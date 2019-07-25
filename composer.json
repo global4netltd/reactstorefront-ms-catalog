@@ -16,8 +16,5 @@
         "psr-4": {
             "G4NReact\\MsCatalog\\": "src/"
         }
-    },
-    "require": {
-        "ext-mbstring": "*"
     }
 }
