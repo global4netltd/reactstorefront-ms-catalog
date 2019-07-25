@@ -138,6 +138,8 @@ class Field extends AbstractObject implements FieldInterface
                     return (bool)$this->value;
                 case self::FIELD_TYPE_STRING:
                 case self::FIELD_TYPE_VARCHAR:
+                    return mb_strcut($this->value, 0, 32766); // @todo do it on library level
+                case self::FIELD_TYPE_TEXT_SEARCH:
                     return mb_strtolower(FieldHelper::alphanum(mb_strcut($this->value, 0, 32766)));
             }
         }
