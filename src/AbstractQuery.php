@@ -173,15 +173,15 @@ abstract class AbstractQuery implements QueryInterface
 
     /**
      * @param string $name
-     * @return Field|null
+     * @return array
      */
-    public function getFilter(string $name): ?Field
+    public function getFilter(string $name): array
     {
         if (isset($this->filters[$name])) {
             return $this->filters[$name];
         }
 
-        return null;
+        return [];
     }
 
     /**
@@ -330,6 +330,8 @@ abstract class AbstractQuery implements QueryInterface
     public function addFacet(Field $field, ?string $fieldname = null): QueryInterface
     {
         $this->facets[$fieldname ?? $field->getName()] = $field;
+
+        return $this;
     }
 
     /**

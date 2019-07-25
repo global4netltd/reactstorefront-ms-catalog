@@ -53,9 +53,9 @@ interface QueryInterface
 
     /**
      * @param string $name
-     * @return Field|null
+     * @return array
      */
-    public function getFilter(string $name): ?Field;
+    public function getFilter(string $name): array;
 
     /**
      * @param Field $field
