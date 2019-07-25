@@ -25,6 +25,12 @@ interface FieldInterface
     public function getValue();
 
     /**
+     * Returns Field value without casting to Field type
+     * @return mixed
+     */
+    public function getRawValue();
+
+    /**
      * @param mixed $value
      * @return Field
      */

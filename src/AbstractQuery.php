@@ -37,7 +37,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @var string
      */
-    public $queryText;
+    public $queryText = '';
 
     /**
      * @var array
@@ -47,7 +47,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @var array
      */
-    public $sort;
+    public $sorts = [];
 
     /**
      * @var array
@@ -57,17 +57,17 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @var int
      */
-    public $pageSize;
+    public $pageSize = 0;
 
     /**
      * @var int
      */
-    public $pageStart;
+    public $pageStart = 0;
 
     /**
      * @var array
      */
-    public $additionalOptions;
+    public $additionalOptions = [];
 
     /**
      * @var array
@@ -80,10 +80,9 @@ abstract class AbstractQuery implements QueryInterface
     public $stats = [];
 
     /**
-     * QueryInterface constructor.
+     * QueryInterface constructor
      *
      * @param ConfigInterface $config
-     *
      * @throws Exception
      */
     public function __construct(ConfigInterface $config)
@@ -102,17 +101,20 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @inheritDoc
+     * @param string $queryText
+     * @return QueryInterface
      */
-    public function setQueryText($queryText)
+    public function setQueryText($queryText): QueryInterface
     {
         $this->queryText = $queryText;
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @return string
      */
-    public function getQueryText()
+    public function getQueryText(): string
     {
         return $this->queryText;
     }
@@ -121,10 +123,9 @@ abstract class AbstractQuery implements QueryInterface
      * @param Field $field
      * @param bool $negative
      * @param string $operator
-     *
-     * @return $this|mixed
+     * @return QueryInterface
      */
-    public function addFilter(Field $field, $negative = false, string $operator = 'AND')
+    public function addFilter(Field $field, $negative = false, string $operator = 'AND'): QueryInterface
     {
         if ($field->getIndexable() || $field->getType() === Field::FIELD_TYPE_STATIC) {
             $this->filters[$field->getName()] = [
@@ -138,38 +139,43 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @inheritDoc
+     * @param array $filters
+     * @return QueryInterface
      */
-    public function addFilters(array $filters)
+    public function addFilters(array $filters): QueryInterface
     {
         foreach ($filters as $filter) {
             if (isset($filter[0])) {
                 $this->addFilter($filter[0], $filter[1] ?? false, $filter[2] ?? 'AND');
             }
         }
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @return QueryInterface
      */
-    public function clearFilters()
+    public function clearFilters(): QueryInterface
     {
         $this->filters = [];
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @return array
      */
-    public function getFilters()
+    public function getFilters(): array
     {
-        return $this->filters;
+        return is_array($this->filters) ? $this->filters : [];
     }
 
     /**
-     * @param $name
-     * @return Field|Null
+     * @param string $name
+     * @return Field|null
      */
-    public function getFilter($name)
+    public function getFilter(string $name): ?Field
     {
         if (isset($this->filters[$name])) {
             return $this->filters[$name];
@@ -179,75 +185,107 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @inheritDoc
+     * @param Field $field
+     * @return QueryInterface
      */
-    public function addSort(Field $field)
+    public function addSort(Field $field): QueryInterface
     {
         if ($field->getIndexable() || $field->getType() === Field::FIELD_TYPE_STATIC) {
-            $this->sort[] = $field;
+            $this->sorts[] = $field;
         }
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @param array $sorts
+     * @return QueryInterface
      */
-    public function setSort(array $fields)
+    public function addSorts(array $sorts): QueryInterface
+    {
+        foreach ($sorts as $sort) {
+            $this->addSort($sort);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param array $fields
+     * @return QueryInterface
+     */
+    public function setSorts(array $fields): QueryInterface
     {
         foreach ($fields as $field) {
             $this->addSort($field);
         }
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @return array
      */
-    public function getSort()
+    public function getSorts(): array
     {
-        return $this->sort;
+        return is_array($this->sorts) ? $this->sorts : [];
     }
 
     /**
-     * @inheritDoc
+     * @return QueryInterface
      */
-    public function clearSort()
+    public function clearSorts(): QueryInterface
     {
-        $this->sort = [];
+        $this->sorts = [];
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @param Field $field
+     * @return QueryInterface
      */
-    public function addFieldToSelect(Field $field)
+    public function addFieldToSelect(Field $field): QueryInterface
     {
         $this->fields[] = $field;
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @param array $fields
+     * @return QueryInterface
      */
-    public function addFieldsToSelect(array $fields)
+    public function addFieldsToSelect(array $fields): QueryInterface
     {
         $this->fields = array_merge($this->fields, $fields);
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @return QueryInterface
      */
-    public function clearFieldsInSelect()
+    public function clearFieldsInSelect(): QueryInterface
     {
         $this->fields = [];
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @param array $options
+     * @return QueryInterface
      */
-    public function setAdditionalOptions(array $options)
+    public function setAdditionalOptions(array $options): QueryInterface
     {
         $this->additionalOptions = $options;
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @return int
      */
     public function getPageSize(): int
     {
@@ -255,15 +293,18 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @inheritDoc
+     * @param int $pageSize
+     * @return QueryInterface
      */
-    public function setPageSize(int $pageSize): void
+    public function setPageSize(int $pageSize): QueryInterface
     {
         $this->pageSize = $pageSize;
+
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * @return int
      */
     public function getPageStart(): int
     {
@@ -271,69 +312,74 @@ abstract class AbstractQuery implements QueryInterface
     }
 
     /**
-     * @inheritDoc
+     * @param int $pageStart
+     * @return QueryInterface
      */
-    public function setPageStart(int $pageStart): void
+    public function setPageStart(int $pageStart): QueryInterface
     {
         $this->pageStart = $pageStart;
+
+        return $this;
     }
 
     /**
      * @param Field $field
      * @param string|null $fieldname
-     *
-     * @return mixed|void
+     * @return QueryInterface
      */
-    public function addFacet(Field $field, ?string $fieldname = null)
+    public function addFacet(Field $field, ?string $fieldname = null): QueryInterface
     {
         $this->facets[$fieldname ?? $field->getName()] = $field;
     }
 
     /**
      * @param array $facets
-     *
-     * @return mixed|void
+     * @return QueryInterface
      */
-    public function addFacets(array $facets)
+    public function addFacets(array $facets): QueryInterface
     {
         $this->facets = array_merge($this->facets, $facets);
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getFacets()
+    public function getFacets(): array
     {
-        return $this->facets;
+        return is_array($this->facets) ? $this->facets : [];
     }
 
     /**
      * @param Field $statsField
-     * @param string $statName
-     *
-     * @return mixed|void
+     * @param string|null $statName
+     * @return QueryInterface
      */
-    public function addStat(Field $statsField, string $statName = null)
+    public function addStat(Field $statsField, ?string $statName = null): QueryInterface
     {
         $this->stats[$statName ?? $statsField->getName()] = $statsField;
+
+        return $this;
     }
 
     /**
      * @param array $stats
-     *
-     * @return mixed|void
+     * @return QueryInterface
      */
-    public function addStats(array $stats)
+    public function addStats(array $stats): QueryInterface
     {
         $this->stats = array_merge($this->stats, $stats);
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getStats()
+    public function getStats(): array
     {
-        return $this->stats;
+        return is_array($this->stats) ? $this->stats : [];
     }
 
     /**

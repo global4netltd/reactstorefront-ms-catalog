@@ -26,6 +26,9 @@ class Field extends AbstractObject implements FieldInterface
     const FIELD_TYPE_DATE = 'date';
     const FIELD_TYPE_TEXT_SEARCH = 'text_search';
 
+    /**
+     * @var array
+     */
     public static $availableTypes = [
         self::FIELD_TYPE_STATIC,
         self::FIELD_TYPE_STRING,
@@ -86,8 +89,7 @@ class Field extends AbstractObject implements FieldInterface
         bool $indexable = true,
         bool $multiValued = false,
         array $args = []
-    )
-    {
+    ) {
         $this->setName($name);
         $this->setValue($value);
         $this->setType($type);
@@ -135,6 +137,14 @@ class Field extends AbstractObject implements FieldInterface
             }
         }
 
+        return $this->value;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRawValue()
+    {
         return $this->value;
     }
 

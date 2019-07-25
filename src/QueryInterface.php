@@ -17,94 +17,99 @@ interface QueryInterface
     public function __construct(ConfigInterface $config);
 
     /**
-     * @param mixed $queryText
-     * @return void
+     * @param string $queryText
+     * @return QueryInterface
      */
-    public function setQueryText($queryText);
+    public function setQueryText(string $queryText): QueryInterface;
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getQueryText();
+    public function getQueryText(): string;
 
     /**
      * @param Field $field
      * @param bool $negative
      * @param string $operator
-     *
-     * @return mixed
+     * @return QueryInterface
      */
-    public function addFilter(Field $field, $negative = false, string $operator = 'AND');
+    public function addFilter(Field $field, $negative = false, string $operator = 'AND'): QueryInterface;
 
     /**
      * @param array $filters
-     * @return $this
+     * @return QueryInterface
      */
-    public function addFilters(array $filters);
+    public function addFilters(array $filters): QueryInterface;
 
     /**
-     * @return void
+     * @return QueryInterface
      */
-    public function clearFilters();
+    public function clearFilters(): QueryInterface;
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getFilters();
+    public function getFilters(): array;
 
     /**
-     * @param $name
-     * @return Field|Null
+     * @param string $name
+     * @return Field|null
      */
-    public function getFilter($name);
+    public function getFilter(string $name): ?Field;
 
     /**
      * @param Field $field
-     * @return void
+     * @return QueryInterface
      */
-    public function addSort(Field $field);
+    public function addSort(Field $field): QueryInterface;
+
+    /**
+     * @param Field[] $sorts
+     * @return QueryInterface
+     */
+    public function addSorts(array $sorts): QueryInterface;
 
     /**
      * Replace current sort fields with new one
      * Array should be build in field => direction convention
      * @param Field[] $fields
-     * @return void
+     * @return QueryInterface
      */
-    public function setSort(array $fields);
+    public function setSorts(array $fields): QueryInterface;
 
     /**
      * @return Field[]
      */
-    public function getSort();
+    public function getSorts();
 
     /**
      * Clear all current set sort in query
-     * @return void
+     * @return QueryInterface
      */
-    public function clearSort();
+    public function clearSorts(): QueryInterface;
 
     /**
-     * @param string $field
-     * @return void
+     * @param Field $field
+     * @return QueryInterface
      */
-    public function addFieldToSelect(Field $field);
+    public function addFieldToSelect(Field $field): QueryInterface;
 
     /**
      * @param Field[] $fields
-     * @return void
+     * @return QueryInterface
      */
-    public function addFieldsToSelect(array $fields);
+    public function addFieldsToSelect(array $fields): QueryInterface;
 
     /**
-     * @return void
+     * @return QueryInterface
      */
-    public function clearFieldsInSelect();
+    public function clearFieldsInSelect(): QueryInterface;
 
     /**
      * @param array $options
-     * @return mixed
+     * @return QueryInterface
      */
-    public function setAdditionalOptions(array $options);
+    public function setAdditionalOptions(array $options): QueryInterface;
 
     /**
      * @return int
@@ -113,8 +118,9 @@ interface QueryInterface
 
     /**
      * @param int $pageSize
+     * @return QueryInterface
      */
-    public function setPageSize(int $pageSize): void;
+    public function setPageSize(int $pageSize): QueryInterface;
 
     /**
      * @return int
@@ -123,47 +129,45 @@ interface QueryInterface
 
     /**
      * @param int $pageStart
+     * @return QueryInterface
      */
-    public function setPageStart(int $pageStart): void;
+    public function setPageStart(int $pageStart): QueryInterface;
 
     /**
      * @param Field $field
      * @param string|null $fieldname
-     *
-     * @return mixed
+     * @return QueryInterface
      */
-    public function addFacet(Field $field, ?string $fieldname = null);
+    public function addFacet(Field $field, ?string $fieldname = null): QueryInterface;
 
     /**
      * @param array $facets
-     *
-     * @return mixed
+     * @return QueryInterface
      */
-    public function addFacets(array $facets);
+    public function addFacets(array $facets): QueryInterface;
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getFacets();
+    public function getFacets(): array;
 
     /**
      * @param Field $statsField
      * @param string|null $statName
-     *
-     * @return mixed
+     * @return QueryInterface
      */
-    public function addStat(Field $statsField, string $statName = null);
-    /**
-     * @param array $stats
-     *
-     * @return mixed
-     */
-    public function addStats(array $stats);
+    public function addStat(Field $statsField, ?string $statName = null): QueryInterface;
 
     /**
-     * @return mixed
+     * @param array $stats
+     * @return QueryInterface
      */
-    public function getStats();
+    public function addStats(array $stats): QueryInterface;
+
+    /**
+     * @return array
+     */
+    public function getStats(): array;
 
     /**
      * Build query and return instance of data which is
