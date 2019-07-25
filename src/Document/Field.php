@@ -3,6 +3,7 @@
 namespace G4NReact\MsCatalog\Document;
 
 use G4NReact\MsCatalog\AbstractObject;
+use G4NReact\MsCatalog\FieldHelper;
 
 /**
  * Class Field
@@ -89,7 +90,8 @@ class Field extends AbstractObject implements FieldInterface
         bool $indexable = true,
         bool $multiValued = false,
         array $args = []
-    ) {
+    )
+    {
         $this->setName($name);
         $this->setValue($value);
         $this->setType($type);
@@ -136,7 +138,7 @@ class Field extends AbstractObject implements FieldInterface
                     return (bool)$this->value;
                 case self::FIELD_TYPE_STRING:
                 case self::FIELD_TYPE_VARCHAR:
-                    return mb_strcut($this->value, 0, 32766);
+                    return mb_strtolower(FieldHelper::alphanum(mb_strcut($this->value, 0, 32766)));
             }
         }
 
