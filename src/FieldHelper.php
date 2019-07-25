@@ -6,10 +6,10 @@ class FieldHelper
 {
     /**
      * Converts polish letters to non diacritic version
-     * @param $string
+     * @param string $string
      * @return string
      */
-    public static function convertPolishLetters($string)
+    public static function convertPolishLetters(string $string): string
     {
         $table = [
             //WIN
@@ -35,17 +35,16 @@ class FieldHelper
     }
 
     /**
-     * @param $value
-     * @param bool $polishSigns
-     * @param bool $space
-     * @return mixed
+     * @param string $value
+     * @param bool $clearPolishSigns
+     * @param bool $clearSpaces
+     * @return string
      */
-    public static function alphanum($value, $polishSigns = false, $space = true)
+    public static function alphanum(string $value, bool $clearPolishSigns = false, bool $clearSpaces = false): string
     {
-        $filtered = $polishSigns ? FieldHelper::convertPolishLetters($value) : $value;
+        $filtered = $clearPolishSigns ? FieldHelper::convertPolishLetters($value) : $value;
+        $filtered = preg_replace('/[^a-zA-Z0-9 ]+/ui', '', $filtered);
 
-        $filtered = preg_replace('/[^\00-\255]+/u', '', $filtered);
-
-        return $space ? $filtered : str_replace(' ', '', $filtered);
+        return $clearSpaces ? str_replace(' ', '', $filtered) : $filtered;
     }
 }

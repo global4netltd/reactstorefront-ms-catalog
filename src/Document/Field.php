@@ -136,7 +136,7 @@ class Field extends AbstractObject implements FieldInterface
                 case self::FIELD_TYPE_BOOL:
                     return (bool)$this->value;
                 case self::FIELD_TYPE_TEXT_SEARCH:
-                    return mb_strtolower(FieldHelper::alphanum($this->value, true));
+                    return mb_strtolower(FieldHelper::alphanum($this->value, true, true));
             }
         }
 
