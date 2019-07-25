@@ -134,6 +134,9 @@ class Field extends AbstractObject implements FieldInterface
                     return (int)$this->value;
                 case self::FIELD_TYPE_BOOL:
                     return (bool)$this->value;
+                case self::FIELD_TYPE_STRING:
+                case self::FIELD_TYPE_VARCHAR:
+                    return mb_strcut($this->value, 0, 32766);
             }
         }
 
