@@ -3,6 +3,7 @@
 namespace G4NReact\MsCatalog\Document;
 
 use G4NReact\MsCatalog\AbstractObject;
+use G4NReact\MsCatalog\FieldHelper;
 
 /**
  * Class Field
@@ -134,6 +135,8 @@ class Field extends AbstractObject implements FieldInterface
                     return (int)$this->value;
                 case self::FIELD_TYPE_BOOL:
                     return (bool)$this->value;
+                case self::FIELD_TYPE_TEXT_SEARCH:
+                    return FieldHelper::alphanum($this->value);
             }
         }
 
