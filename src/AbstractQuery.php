@@ -392,5 +392,5 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @inheritDoc
      */
-    abstract public function getResponse();
+    abstract public function getResponse(bool $rawFieldName = false);
 }
