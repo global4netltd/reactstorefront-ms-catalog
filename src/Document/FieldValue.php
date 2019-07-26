@@ -36,8 +36,7 @@ class FieldValue
         $value = null,
         $fromValue = null,
         $toValue = null
-    )
-    {
+    ) {
         $this->setValue($value);
         $this->setFromValue($fromValue);
         $this->setToValue($toValue);
