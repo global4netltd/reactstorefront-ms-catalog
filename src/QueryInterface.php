@@ -177,10 +177,11 @@ interface QueryInterface
     public function buildQuery();
 
     /**
+     * @param bool $rawFieldName
+     *
      * Run query and get response (@return ResponseInterface
      * @see ResponseInterface) from
      * selected engine library
      */
-    public function getResponse();
-
+    public function getResponse(bool $rawFieldName = false);
 }

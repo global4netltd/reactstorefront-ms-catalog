@@ -50,10 +50,11 @@ interface ClientInterface
 
     /**
      * @param $query
+     * @param bool $rawFieldName
      *
      * @return ResponseInterface
      */
-    public function query($query): ResponseInterface;
+    public function query($query, bool $rawFieldName): ResponseInterface;
 
     /**
      * @return PullerInterface
