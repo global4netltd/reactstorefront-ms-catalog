@@ -2,6 +2,9 @@
 
 namespace G4NReact\MsCatalog;
 
+use G4NReact\MsCatalog\Document\Field;
+use G4NReact\MsCatalog\Document\FieldValue;
+
 class FieldHelper
 {
     /**
@@ -46,5 +49,41 @@ class FieldHelper
         $filtered = preg_replace('/[^a-zA-Z0-9 ]+/ui', '', $filtered);
 
         return $clearSpaces ? str_replace(' ', '', $filtered) : $filtered;
+    }
+
+    /**
+     * @param mixed $value
+     * @param string $type
+     * @return bool
+     */
+    public static function shouldHandleValue($value, string $type): bool
+    {
+        if (in_array($type, Field::$numericFieldTypes) && is_string($value)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param mixed $value
+     * @return mixed|FieldValue
+     */
+    public static function handleValue($value)
+    {
+        if (is_string($value)) {
+            $pattern = '/^(-?\d+\.?\d{0,})-(-?\d+\.?\d{0,})$/m';
+            preg_match_all($pattern, $value, $matches, PREG_SET_ORDER, 0);
+
+            if (!$matches) {
+                return $value;
+            }
+
+            if (isset($matches[0][1]) && isset($matches[0][2])) {
+                $value = new FieldValue($matches[0][0], $matches[0][1], $matches[0][2]);
+            }
+        }
+
+        return $value;
     }
 }

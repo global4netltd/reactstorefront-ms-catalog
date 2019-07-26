@@ -49,6 +49,17 @@ class Field extends AbstractObject implements FieldInterface
     ];
 
     /**
+     * @var array
+     */
+    public static $numericFieldTypes = [
+        self::FIELD_TYPE_INT,
+        self::FIELD_TYPE_DECIMAL,
+        self::FIELD_TYPE_FLOAT,
+        self::FIELD_TYPE_DOUBLE,
+        self::FIELD_TYPE_SMALLINT,
+    ];
+    
+    /**
      * @var string
      */
     protected $name;
