@@ -115,6 +115,7 @@ class Field extends AbstractObject implements FieldInterface
 
     /**
      * @param string $name
+     *
      * @return Field
      */
     public function setName(string $name): Field
@@ -131,9 +132,12 @@ class Field extends AbstractObject implements FieldInterface
     {
         if (!is_array($this->value)) {
             switch ($this->getType()) {
+                case $this->value instanceof FieldValue:
+                    return $this->value->getValue();
                 case self::FIELD_TYPE_INT:
-                case self::FIELD_TYPE_FLOAT:
                     return (int)$this->value;
+                case self::FIELD_TYPE_FLOAT:
+                    return (float)$this->value;
                 case self::FIELD_TYPE_BOOL:
                     return (bool)$this->value;
                 case self::FIELD_TYPE_STRING:
@@ -157,6 +161,7 @@ class Field extends AbstractObject implements FieldInterface
 
     /**
      * @param mixed $value
+     *
      * @return Field
      */
     public function setValue($value): Field
@@ -176,6 +181,7 @@ class Field extends AbstractObject implements FieldInterface
 
     /**
      * @param string $type
+     *
      * @return Field
      */
     public function setType(string $type): Field
@@ -199,6 +205,7 @@ class Field extends AbstractObject implements FieldInterface
 
     /**
      * @param bool $indexable
+     *
      * @return Field
      */
     public function setIndexable(bool $indexable): Field
