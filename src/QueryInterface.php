@@ -64,6 +64,12 @@ interface QueryInterface
     public function addSort(Field $field): QueryInterface;
 
     /**
+     * @param string $name
+     * @return QueryInterface
+     */
+    public function removeSort(string $name): QueryInterface;
+
+    /**
      * @param Field[] $sorts
      * @return QueryInterface
      */

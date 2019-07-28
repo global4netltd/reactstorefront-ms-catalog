@@ -190,8 +190,21 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function addSort(Field $field): QueryInterface
     {
-        if ($field->getIndexable() || $field->getType() === Field::FIELD_TYPE_STATIC) {
-            $this->sorts[] = $field;
+//        if ($field->getIndexable() || $field->getType() === Field::FIELD_TYPE_STATIC) { @ToDo: Temporarily - 'popularity' problem
+            $this->sorts[$field->getName()] = $field;
+//        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return QueryInterface
+     */
+    public function removeSort(string $name): QueryInterface
+    {
+        if (isset($this->sorts[$name])) {
+            unset($this->sorts[$name]);
         }
 
         return $this;
