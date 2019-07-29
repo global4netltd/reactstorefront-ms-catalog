@@ -109,7 +109,24 @@ interface QueryInterface
     /**
      * @return QueryInterface
      */
-    public function clearFieldsInSelect(): QueryInterface;
+    public function clearFieldsToSelect(): QueryInterface;
+
+    /**
+     * @return array
+     */
+    public function getFieldsToSelect(): array;
+
+    /**
+     * @param string $name
+     * @return Field|null
+     */
+    public function getFieldToSelect(string $name): ?Field;
+
+    /**
+     * @param string $name
+     * @return QueryInterface
+     */
+    public function removeFieldToSelect(string $name): QueryInterface;
 
     /**
      * @param array $options
