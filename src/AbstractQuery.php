@@ -260,7 +260,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function addFieldToSelect(Field $field): QueryInterface
     {
-        $this->fields[] = $field;
+        $this->fields[$field->getName()] = $field;
 
         return $this;
     }
@@ -271,7 +271,39 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function addFieldsToSelect(array $fields): QueryInterface
     {
-        $this->fields = array_merge($this->fields, $fields);
+        foreach ($fields as $field) {
+            $this->addFieldToSelect($field);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFieldsToSelect(): array
+    {
+        return $this->fields ?: [];
+    }
+
+    /**
+     * @param string $name
+     * @return Field|null
+     */
+    public function getFieldToSelect(string $name): ?Field
+    {
+        return $this->fields[$name] ?? null;
+    }
+
+    /**
+     * @param string $name
+     * @return QueryInterface
+     */
+    public function removeFieldToSelect(string $name): QueryInterface
+    {
+        if (isset($this->fields[$name])) {
+            unset($this->fields[$name]);
+        }
 
         return $this;
     }
@@ -279,7 +311,7 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @return QueryInterface
      */
-    public function clearFieldsInSelect(): QueryInterface
+    public function clearFieldsToSelect(): QueryInterface
     {
         $this->fields = [];
 
