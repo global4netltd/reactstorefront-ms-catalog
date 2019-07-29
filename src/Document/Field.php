@@ -162,6 +162,8 @@ class Field extends AbstractObject implements FieldInterface
                         )
                     );
             }
+        } else {
+            return $this->value ?: [];
         }
 
         return $this->value;
