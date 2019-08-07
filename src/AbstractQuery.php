@@ -12,16 +12,24 @@ use G4NReact\MsCatalog\Document\Field;
  */
 abstract class AbstractQuery implements QueryInterface
 {
-    /** @var string field */
+    /**
+     * @var string field
+     */
     const FIELD = 'field';
 
-    /** @var string negative */
+    /**
+     * @var string negative
+     */
     const NEGATIVE = 'negative';
 
-    /** @var string operator */
+    /**
+     * @var string operator
+     */
     const OPERATOR = 'operator';
 
-    /** @var string OR operator */
+    /**
+     * @var string OR operator
+     */
     const OR_OPERATOR = 'OR';
 
     /**

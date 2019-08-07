@@ -75,6 +75,22 @@ abstract class AbstractConfig implements ConfigInterface
     }
 
     /**
+     * @return int|null
+     */
+    public function getPullerTimeout(): ?int
+    {
+        return $this->engineParams['puller_timeout'] ?? null;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPusherTimeout(): ?int
+    {
+        return $this->engineParams['pusher_timeout'] ?? null;
+    }
+
+    /**
      * @return bool|null
      */
     public function getPusherDeleteIndex(): ?bool

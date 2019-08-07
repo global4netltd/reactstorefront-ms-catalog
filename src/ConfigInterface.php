@@ -40,6 +40,16 @@ interface ConfigInterface
     public function getPusherPageSize(): ?int;
 
     /**
+     * @return int|null
+     */
+    public function getPullerTimeout(): ?int;
+
+    /**
+     * @return int|null
+     */
+    public function getPusherTimeout(): ?int;
+
+    /**
      * @return bool|null
      */
     public function getPusherDeleteIndex(): ?bool;
