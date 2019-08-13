@@ -136,7 +136,7 @@ abstract class AbstractQuery implements QueryInterface
     public function addFilter(Field $field, $negative = false, string $operator = 'AND'): QueryInterface
     {
         if ($field->getIndexable() || $field->getType() === Field::FIELD_TYPE_STATIC) {
-            $this->filters[$field->getName()] = [
+            $this->filters[$field->getName()][] = [
                 self::FIELD    => $field,
                 self::NEGATIVE => $negative,
                 self::OPERATOR => $operator
@@ -183,10 +183,10 @@ abstract class AbstractQuery implements QueryInterface
      * @param string $name
      * @return array
      */
-    public function getFilter(string $name): array
+    public function getFilter(string $name, $idx = 0): array
     {
-        if (isset($this->filters[$name])) {
-            return $this->filters[$name];
+        if (isset($this->filters[$name][$idx])) {
+            return $this->filters[$name][$idx];
         }
 
         return [];
