@@ -188,4 +188,17 @@ class Document extends AbstractObject
     {
         $this->unsetData($name);
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        $array = [];
+        foreach ($this->getFields() as $field) {
+            $array[$field->getName()] = $field->getValue();
+        }
+
+        return $array;
+    }
 }
