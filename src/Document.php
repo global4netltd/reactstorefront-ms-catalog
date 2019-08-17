@@ -29,7 +29,7 @@ class Document extends AbstractObject
     /**
      * @return string
      */
-    public function getUniqueId(): string
+    public function getUniqueId(): ?string
     {
         return $this->uniqueId;
     }
