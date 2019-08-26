@@ -1,0 +1,20 @@
+{
+    "name": "g4n-react/ms-catalog",
+    "description": "Something, something, something darkside...",
+    "version": "0.1.0",
+    "license": "MIT",
+    "keywords": [
+        "react-storefront"
+    ],
+    "authors": [
+        {
+            "name": "G4N React Storefront",
+            "email": "biuro@global4net.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "G4NReact\\MsCatalog\\": "src/"
+        }
+    }
+}
