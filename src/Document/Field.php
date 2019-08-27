@@ -162,6 +162,20 @@ class Field extends AbstractObject implements FieldInterface
                         )
                     );
             }
+        } elseif(is_array($this->value)) {
+            switch ($this->getType()) {
+                case self::FIELD_TYPE_INT:
+                    return array_map('intval', $this->value);
+                case self::FIELD_TYPE_FLOAT:
+                    return array_map('floatval', $this->value);
+                case self::FIELD_TYPE_BOOL:
+                    return array_map('boolval', $this->value);
+                case self::FIELD_TYPE_STRING:
+                case self::FIELD_TYPE_VARCHAR:
+                    return array_map('strval', $this->value);
+                default:
+                    return $this->value;
+            }
         } else {
             return $this->value ?: [];
         }
