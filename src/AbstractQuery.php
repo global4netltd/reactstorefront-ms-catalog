@@ -73,6 +73,11 @@ abstract class AbstractQuery implements QueryInterface
     public $pageStart = 0;
 
     /**
+     * @var int|null
+     */
+    public $currentPage;
+
+    /**
      * @var array
      */
     public $additionalOptions = [];
@@ -360,8 +365,31 @@ abstract class AbstractQuery implements QueryInterface
     /**
      * @return int
      */
+    public function getCurrentPage(): int
+    {
+        return $this->currentPage;
+    }
+
+    /**
+     * @param int $pageSize
+     * @return QueryInterface
+     */
+    public function setCurrentPage(int $currentPage): QueryInterface
+    {
+        $this->currentPage = $currentPage ?: 1;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
     public function getPageStart(): int
     {
+        if ($currentPage = $this->getCurrentPage()) {
+            return $currentPage * $this->getPageSize();
+        }
+
         return $this->pageStart ?: 0;
     }
 

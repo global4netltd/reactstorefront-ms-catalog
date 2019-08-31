@@ -148,6 +148,17 @@ interface QueryInterface
     /**
      * @return int
      */
+    public function getCurrentPage(): int;
+
+    /**
+     * @param int $pageSize
+     * @return QueryInterface
+     */
+    public function setCurrentPage(int $currentPage): QueryInterface;
+
+    /**
+     * @return int
+     */
     public function getPageStart(): int;
 
     /**
