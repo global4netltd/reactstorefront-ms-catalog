@@ -376,7 +376,7 @@ abstract class AbstractQuery implements QueryInterface
      */
     public function setCurrentPage(int $currentPage): QueryInterface
     {
-        $this->currentPage = $currentPage ?: 0;
+        $this->currentPage = $currentPage ? $currentPage - 1 : 0;
 
         return $this;
     }
