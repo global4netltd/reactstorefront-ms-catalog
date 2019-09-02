@@ -48,6 +48,11 @@ abstract class AbstractQuery implements QueryInterface
     public $queryText = '';
 
     /**
+     * @var string
+     */
+    public $queryPrepend = '';
+
+    /**
      * @var array
      */
     public $filters = [];
@@ -130,6 +135,25 @@ abstract class AbstractQuery implements QueryInterface
     public function getQueryText(): string
     {
         return $this->queryText;
+    }
+
+    /**
+     * @param string $queryText
+     * @return QueryInterface
+     */
+    public function setQueryPrepend($queryPrepend): QueryInterface
+    {
+        $this->queryPrepend = $queryPrepend;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQueryPrepend(): string
+    {
+        return $this->queryPrepend;
     }
 
     /**
