@@ -57,5 +57,6 @@ class Helper
         'unique_id',
         'id',
         'object_type',
+        'score',
     ];
 }
