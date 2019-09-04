@@ -28,6 +28,17 @@ interface QueryInterface
     public function getQueryText(): string;
 
     /**
+     * @param string $queryText
+     * @return QueryInterface
+     */
+    public function setQueryPrepend($queryPrepend): QueryInterface;
+    
+    /**
+     * @return string
+     */
+    public function getQueryPrepend(): string;
+
+    /**
      * @param Field $field
      * @param bool $negative
      * @param string $operator

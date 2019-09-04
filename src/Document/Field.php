@@ -145,7 +145,7 @@ class Field extends AbstractObject implements FieldInterface
                 case $this->value instanceof FieldValue:
                     return $this->value->getValue();
                 case self::FIELD_TYPE_INT:
-                    return $this->value === '*' ? '*' : (int)$this->value; // @todo temporary - rethink
+                    return (int)$this->value;
                 case self::FIELD_TYPE_FLOAT:
                     return (float)$this->value;
                 case self::FIELD_TYPE_BOOL:
