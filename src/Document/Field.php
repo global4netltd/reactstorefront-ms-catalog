@@ -158,7 +158,7 @@ class Field extends AbstractObject implements FieldInterface
                         FieldHelper::alphanum(
                             mb_strcut($this->value, 0, 32766),
                             true,
-                            true
+                            false
                         )
                     );
             }
