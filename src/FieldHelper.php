@@ -47,8 +47,9 @@ class FieldHelper
     {
         $filtered = $clearPolishSigns ? FieldHelper::convertPolishLetters($value) : $value;
         $filtered = preg_replace('/[^a-zA-Z0-9 ]+/ui', '', $filtered);
-
-        return $clearSpaces ? str_replace(' ', '', $filtered) : $filtered;
+        $filtered = $clearSpaces ? str_replace(' ', '', $filtered) : $filtered;
+        
+        return $filtered ?: '';
     }
 
     /**
