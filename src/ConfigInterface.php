@@ -55,6 +55,11 @@ interface ConfigInterface
     public function getPusherDeleteIndex(): ?bool;
 
     /**
+     * @return bool|null
+     */
+    public function getPusherRemoveMissingObjects(): ?bool;
+
+    /**
      * @return array
      */
     public function getEngineConnectionArray(): array;
