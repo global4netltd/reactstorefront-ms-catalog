@@ -99,6 +99,14 @@ abstract class AbstractConfig implements ConfigInterface
     }
 
     /**
+     * @return bool|null
+     */
+    public function getPusherRemoveMissingObjects(): ?bool
+    {
+        return $this->engineParams['pusher_remove_missing_objects'] ?? null;
+    }
+
+    /**
      * @return array
      */
     public function getEngineConnectionArray(): array
