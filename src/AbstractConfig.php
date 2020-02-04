@@ -107,6 +107,14 @@ abstract class AbstractConfig implements ConfigInterface
     }
 
     /**
+     * @return bool|null
+     */
+    public function getRemoveNotExisting(): ?bool
+    {
+        return $this->engineParams['remove_not_existing_in_magento'] ?? null;
+    }
+
+    /**
      * @return array
      */
     public function getEngineConnectionArray(): array

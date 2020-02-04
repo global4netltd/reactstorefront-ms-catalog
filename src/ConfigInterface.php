@@ -60,6 +60,11 @@ interface ConfigInterface
     public function getPusherRemoveMissingObjects(): ?bool;
 
     /**
+     * @return bool|null
+     */
+    public function getRemoveNotExisting(): ?bool;
+
+    /**
      * @return array
      */
     public function getEngineConnectionArray(): array;
