@@ -39,17 +39,33 @@ class ClientFactory
 
     /**
      * @param ConfigInterface $config
-     * @param int $id
      *
      * @return ClientInterface
      * @throws Exception
      */
-    public static function getInstance(ConfigInterface $config, int $id = 0)
+    public static function getInstance(ConfigInterface $config)
     {
-        if(self::$instance[$id] == null){
+        $id = self::getConfigHashId($config);
+        if(!isset(self::$instance[$id])){
             self::$instance[$id] = ClientFactory::create($config);
         }
 
         return self::$instance[$id];
+    }
+
+    /**
+     * Get hash to check uniqeness of config data
+     *
+     * @param ConfigInterface $config
+     * @return string
+     */
+    protected static function getConfigHashId(ConfigInterface $config): string
+    {
+        $params = $config->getEngineParams();
+        $params['connection'] = $config->getEngineConnectionArray();
+        ksort($params);
+        ksort($params['connection']);
+
+        return md5(json_encode($params));
     }
 }
