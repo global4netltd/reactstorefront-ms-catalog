@@ -65,6 +65,11 @@ interface ConfigInterface
     public function getRemoveNotExisting(): ?bool;
 
     /**
+     * @return bool|null
+     */
+    public function getRemoveNotActive(): ?bool;
+
+    /**
      * @return array
      */
     public function getEngineConnectionArray(): array;
