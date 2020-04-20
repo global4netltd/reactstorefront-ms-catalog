@@ -26,6 +26,7 @@ class Field extends AbstractObject implements FieldInterface
     const FIELD_TYPE_TIMESTAMP = 'timestamp';
     const FIELD_TYPE_DATE = 'date';
     const FIELD_TYPE_TEXT_SEARCH = 'text_search';
+    const FIELD_TYPE_TEXT_SEARCH_PRIMARY = 'primary_search';
 
     /**
      * @var array
@@ -45,7 +46,8 @@ class Field extends AbstractObject implements FieldInterface
         self::FIELD_TYPE_SMALLINT,
         self::FIELD_TYPE_TIMESTAMP,
         self::FIELD_TYPE_DATE,
-        self::FIELD_TYPE_TEXT_SEARCH
+        self::FIELD_TYPE_TEXT_SEARCH,
+        self::FIELD_TYPE_TEXT_SEARCH_PRIMARY,
     ];
 
     /**
@@ -58,7 +60,7 @@ class Field extends AbstractObject implements FieldInterface
         self::FIELD_TYPE_DOUBLE,
         self::FIELD_TYPE_SMALLINT,
     ];
-    
+
     /**
      * @var string
      */
@@ -154,6 +156,7 @@ class Field extends AbstractObject implements FieldInterface
                 case self::FIELD_TYPE_VARCHAR:
                     return mb_strcut($this->value, 0, 32766); // @todo do it on library level
                 case self::FIELD_TYPE_TEXT_SEARCH:
+                case self::FIELD_TYPE_TEXT_SEARCH_PRIMARY:
                     return mb_strtolower(
                         FieldHelper::alphanum(
                             mb_strcut($this->value, 0, 32766),
