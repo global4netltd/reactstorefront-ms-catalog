@@ -27,6 +27,7 @@ class Field extends AbstractObject implements FieldInterface
     const FIELD_TYPE_DATE = 'date';
     const FIELD_TYPE_TEXT_SEARCH = 'text_search';
     const FIELD_TYPE_TEXT_SEARCH_PRIMARY = 'primary_search';
+    const FIELD_TYPE_TEXT_WORDS = 'text_words';
 
     /**
      * @var array
@@ -48,6 +49,7 @@ class Field extends AbstractObject implements FieldInterface
         self::FIELD_TYPE_DATE,
         self::FIELD_TYPE_TEXT_SEARCH,
         self::FIELD_TYPE_TEXT_SEARCH_PRIMARY,
+        self::FIELD_TYPE_TEXT_WORDS,
     ];
 
     /**
@@ -60,7 +62,7 @@ class Field extends AbstractObject implements FieldInterface
         self::FIELD_TYPE_DOUBLE,
         self::FIELD_TYPE_SMALLINT,
     ];
-
+    
     /**
      * @var string
      */

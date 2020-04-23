@@ -6,6 +6,7 @@ use G4NReact\MsCatalog\PullerInterface;
 use G4NReact\MsCatalog\PusherInterface;
 use G4NReact\MsCatalog\QueryInterface;
 use G4NReact\MsCatalog\ResponseInterface;
+use G4NReact\MsCatalog\Spellcheck\SpellcheckResponseInterface;
 
 /**
  * Interface ClientInterface
@@ -70,6 +71,12 @@ interface ClientInterface
      * @return QueryInterface
      */
     public function getQuery(): QueryInterface;
+
+    /**
+     * @param string $text
+     * @return SpellcheckResponseInterface
+     */
+    public function checkSpelling(string $text): SpellcheckResponseInterface;
 
     /**
      * @param string $name
