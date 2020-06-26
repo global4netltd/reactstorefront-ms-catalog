@@ -168,6 +168,12 @@ class Field extends AbstractObject implements FieldInterface
                     );
             }
         } elseif(is_array($this->value)) {
+
+            $multi = array_filter($this->value, 'is_array');
+            if(count($multi) > 0) {
+                $this->value = call_user_func_array('array_merge', $this->value);
+            }
+
             switch ($this->getType()) {
                 case self::FIELD_TYPE_INT:
                     return array_map('intval', $this->value);
