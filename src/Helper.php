@@ -36,6 +36,8 @@ class Helper
                 'port',
                 'core',
                 'collection',
+                'username',
+                'password'
             ],
         ],
         self::ENGINE_ELASTICSEARCH_VALUE => [
